@@ -1,8 +1,9 @@
+import "dotenv/config";
 import App from "./app";
 
-const PORT = 3030;
-const HOST = "0.0.0.0";
+const PORT = parseInt(process.env.PORT!);
 
 const server = new App();
 
-server.start(PORT, HOST);
+server.start(PORT);
+
