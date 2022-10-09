@@ -1,7 +1,7 @@
 import express, { Express, json } from "express";
 
 export default class App {
-  readonly app: Express;
+  private readonly app: Express;
 
   constructor() {
     this.app = express();
