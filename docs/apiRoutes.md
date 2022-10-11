@@ -11,7 +11,8 @@ A aplicação usa JSON para transmissão de dados via HTTP.
 
         schema:
             {
-                "name": "Fulano",
+                "name": "fulano"
+                "email": "Fulano@gmail.com",
                 "password": "12345678"
             }
 
@@ -20,8 +21,8 @@ A aplicação usa JSON para transmissão de dados via HTTP.
                 usuario criado com sucesso
                 schema:
                     {
-                        "id": 1,
-                        "name": "Fulano",
+                        "name": "fulano"
+                        "email": "Fulano@gmail.com",
                         "password": "asd124asd23"
                     }
 
