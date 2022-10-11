@@ -1,8 +1,10 @@
 # AGROBOV API
 
-Clone o repositorio localmente
+Clone o repositorio localmente e istale as dependencias do projeto
 
 ```
+    git clone https://github.com/mardenrafael/contaboi-backend.git
+    cd contaboi-backend
     npm install
 ```
 
