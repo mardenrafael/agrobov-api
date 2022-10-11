@@ -4,5 +4,5 @@ import App from "./app";
 
 const PORT = parseInt(process.env.PORT!);
 
-const server = new App(express(), PORT, "0.0.0.0");
+const server = new App(express(), PORT, "127.0.0.1");
 

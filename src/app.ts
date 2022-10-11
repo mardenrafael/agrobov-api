@@ -1,4 +1,7 @@
 import { Express, json } from "express";
+import { Request, Response } from "express";
+import  swaggerUi  from "swagger-ui-express";
+import swaggerDocs from "../docs/swagger.json"
 
 export default class App {
   private readonly app: Express;
@@ -17,6 +20,7 @@ export default class App {
    */
   private config(): void {
     this.app.use(json());
+    this.app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
   }
 
   /**
@@ -36,7 +40,11 @@ export default class App {
    *  this.app.use(UserRoute)
    * }
    */
-  private routes(): void {}
+  private routes(): void {
+    this.app.get("/", (_req: Request, res: Response) => {
+      res.json({info: "API is running"})
+    })
+  }
 
   /**
    *Inicia o servidor
