@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    container_name: agroBovDb
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: r0Ot@369
+      POSTGRES_DB: AgrobovDB
+
+    ports:
+      - 5432:5432
+
