@@ -5,10 +5,18 @@ services:
     image: postgres
     container_name: agroBovDb
     restart: always
+
     environment:
       POSTGRES_PASSWORD: r0Ot@369
-      POSTGRES_DB: AgrobovDB
+      POSTGRES_USER: postgres
+      POSTGRES_DB: agrobovDB
 
     ports:
       - 5432:5432
+
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
 
