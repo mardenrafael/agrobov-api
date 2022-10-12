@@ -1,5 +1,5 @@
 import CreateUserService from "./CreateUserService";
-import { RequestUser } from "./types/RequestUser";
+import { RequestCreateUser } from "./types/UserTypes";
 
-export { CreateUserService, RequestUser };
+export { CreateUserService, RequestCreateUser as RequestUser };
 
