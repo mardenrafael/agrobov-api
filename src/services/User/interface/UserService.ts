@@ -1,6 +1,7 @@
 import { User } from "@prisma/client";
+import { OmitUserRequest } from "../types/UserTypes";
 
-export default interface UserService {
-  execute({}): Promise<User | Error>;
+export interface UserService {
+  execute({}): Promise<OmitUserRequest<User> | Error>;
 }
 
