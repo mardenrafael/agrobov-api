@@ -1,15 +1,17 @@
 import { Express, json } from "express";
+import UserRoutes from "./Routes/User/UserRoutes";
 
 export default class App {
   private readonly app: Express;
+  private readonly port: number;
 
-  constructor(express: Express, port: number, host: string) {
+  constructor(express: Express, port: number) {
     this.app = express;
+    this.port = port;
 
     this.config();
     this.midleware();
     this.routes();
-    this.start(port, host);
   }
 
   /**
@@ -36,16 +38,18 @@ export default class App {
    *  this.app.use(UserRoute)
    * }
    */
-  private routes(): void {}
+  private routes(): void {
+    this.app.use(new UserRoutes().export());
+  }
 
   /**
    *Inicia o servidor
    * @param port Porta que vai ser usada
    * @param host URL que vai ser usada, nesse caso localhost
    */
-  private start(port: number, host: string = "0.0.0.0") {
-    this.app.listen(port, host, () => {
-      console.log(`Server running on: ${host}:${port}`);
+  public start() {
+    this.app.listen(this.port, () => {
+      console.log(`Server running on: ${this.port}`);
     });
   }
 }
