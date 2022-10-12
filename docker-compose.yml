@@ -17,18 +17,6 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  api:
-    build: .
-    container_name: agrobov-api
-    ports:
-      - 3030:3030
-
-    volumes:
-      - .:/usr/etc/app
-
-    depends_on:
-      - db
-
 volumes:
   pgdata:
 
