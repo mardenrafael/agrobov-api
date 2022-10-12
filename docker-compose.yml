@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_PASSWORD: r0Ot@369
       POSTGRES_USER: postgres
-      POSTGRES_DB: agrobovDB
+      POSTGRES_DB: agrobovdb
 
     ports:
       - 5432:5432
