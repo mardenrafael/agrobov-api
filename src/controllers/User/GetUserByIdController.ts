@@ -11,9 +11,9 @@ export default class GetUserByIdController implements UserController {
 
     if (result instanceof Error) {
       res.status(400).json({
-        error: result.name,
-        message: result.message,
+        error: result.message,
       });
+
       return;
     }
 
