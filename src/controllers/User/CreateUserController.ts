@@ -10,7 +10,7 @@ export default class CreateUserController implements UserController {
     const result = await service.execute({
       name,
       email,
-      password,
+      passWord: password,
     });
 
     if (result instanceof Error) {
