@@ -7,23 +7,26 @@
   },
 
   "server": {
-    "development": "127.0.0.1:3000"
+    "development": "127.0.0.1:3030"
   },
 
   "paths": {
-    "/": {
+    "/user/:{userid}": {
       "get": {
-        "sumary": "Rota raiz",
-        "description": "Rota raiz do projeto",
-        "tags": ["ROOT"]
+        "sumary": "Rota de usuario",
+        "description": "Rota para buscar usuario pelo id",
+        "tags": ["Users "]
       },
       "responses": {
         "200": {
-          "description": "Ok",
+          "description": "Retorna o usuario caso seja encontrado",
           "content": {
             "application/json": {
               "schema": {
-                "info": "API is running"
+                "id": 0,
+                "name": "fulano",
+                "email": "fulano@gmail.com",
+                "password": "asda23sda55sd35as4d"
               }
             }
           }
@@ -32,3 +35,4 @@
     }
   }
 }
+
