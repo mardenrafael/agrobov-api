@@ -1,6 +1,6 @@
 # AGROBOV API
 
-Clone o repositorio localmente e istale as dependencias do projeto
+Clone o repositorio localmente e instale as dependencias do projeto
 
 ```
     git clone https://github.com/mardenrafael/contaboi-backend.git
