@@ -12,7 +12,7 @@ export class GetUserByIdService implements UserService {
   public async execute(id: number): Promise<Error | OmitUserRequest<User>> {
     const result = await this.prisma.user.findUnique({
       where: {
-        id,
+        id: id
       },
     });
 

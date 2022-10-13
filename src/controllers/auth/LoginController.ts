@@ -12,7 +12,7 @@ export class LoginController {
     });
 
     if (result instanceof Error) {
-      res.status(404).json({
+      res.status(401).json({
         error: result.message,
       });
 
