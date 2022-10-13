@@ -16,6 +16,6 @@ Copie o arquivo .env.example e renomeie para para .env e altere as variaveis de 
 Rode esse comando no terminal para iniciar o servidor de desenvolvimento
 
 ```
-    npm run dev
+    npm run start:dev
 ```
 
