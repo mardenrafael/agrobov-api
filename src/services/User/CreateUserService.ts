@@ -12,8 +12,8 @@ export default class CreateUserService implements UserService {
   }
 
   public async execute({
-    email,
     name,
+    email,
     passWord,
   }: RequestUser): Promise<OmitUserRequest<User> | Error> {
     const hashPassword = await bcrypt.hash(passWord, 10);
@@ -39,4 +39,3 @@ export default class CreateUserService implements UserService {
     return user;
   }
 }
-

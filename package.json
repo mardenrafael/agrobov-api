@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "ts-node-dev -T ./src/index"
+    "start": "ts-node-dev -T ./src/index"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/mardenrafael/contaboi-backend#readme",
   "dependencies": {
     "@prisma/client": "^4.4.0",
+    "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^8.5.9",
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",

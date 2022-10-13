@@ -5,9 +5,9 @@ import UserController from "./interface/UserController";
 
 export default class GetUserByIdController implements UserController {
   public async handle(req: Request, res: Response): Promise<void> {
-    const { id } = req.body;
+    const id = req.params.id;
     const service = new GetUserByIdService(prisma);
-    const result = await service.execute(id);
+    const result = await service.execute(Number(id));
 
     if (result instanceof Error) {
       res.status(400).json({

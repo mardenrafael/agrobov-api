@@ -12,7 +12,7 @@ export default class UserRoutes {
   }
 
   private config(): void {
-    this.router.get("/user", new GetUserByIdController().handle);
+    this.router.get("/user/:id", new GetUserByIdController().handle);
     this.router.post("/user", new CreateUserController().handle);
   }
 
