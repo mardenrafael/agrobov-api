@@ -1,3 +1,4 @@
+import { LoginController } from './../../controllers/auth/LoginController';
 import { Router } from "express";
 import CreateUserController from "../../controllers/User/CreateUserController";
 import GetUserByIdController from "../../controllers/User/GetUserByIdController";
@@ -13,6 +14,7 @@ export default class UserRoutes {
 
   private config(): void {
     this.router.get("/user/:id", new GetUserByIdController().handle);
+    this.router.get("/login", new LoginController().handle);
     this.router.post("/user", new CreateUserController().handle);
   }
 
