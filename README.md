@@ -19,3 +19,12 @@ Rode esse comando no terminal para iniciar o servidor de desenvolvimento
     npm run start:dev
 ```
 
+
+```
+#092640
+#1E4E50
+#54B88A
+#85F2DE
+#C6FBF9
+```
+
