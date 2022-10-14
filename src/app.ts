@@ -1,5 +1,6 @@
 import { Express, json } from "express";
 import { AuthMiddleware } from "./middlewares/AuthMiddleware";
+import OxRoutes from "./Routes/Ox/OxRoutes";
 import UserRoutes from "./Routes/User/UserRoutes";
 
 export default class App {
@@ -42,6 +43,7 @@ export default class App {
   private routes(): void {
     this.app.use(new AuthMiddleware().export());
     this.app.use(new UserRoutes().export());
+    this.app.use(new OxRoutes().export())
   }
 
   /**
