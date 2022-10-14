@@ -17,6 +17,8 @@ export class GetUserByIdService implements UserService {
       select: {
         email: true,
         name: true,
+        brand: true,
+        Ox: true
       },
     });
 
