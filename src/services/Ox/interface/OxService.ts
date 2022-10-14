@@ -1,5 +1,5 @@
 import { Ox } from "@prisma/client";
 
 export interface OxService {
-  execute({}): Promise<Array <Ox> | Ox | Error >;
+  execute({}, ownerId: number): Promise<Array <Ox> | Ox | Error >;
 }
