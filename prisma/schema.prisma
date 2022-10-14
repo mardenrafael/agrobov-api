@@ -15,6 +15,17 @@ model User {
   name       String
   email      String   @unique
   password   String
+  brand      String   @unique
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
+  Ox         Ox[]
+}
+
+model Ox {
+  id        Int      @id @default(autoincrement())
+  marked    Boolean  @default(false)
+  earring   String?
+  born_date DateTime
+  owner     User     @relation(fields: [ownerId], references: [id])
+  ownerId   Int
 }

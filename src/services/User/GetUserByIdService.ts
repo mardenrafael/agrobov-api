@@ -10,18 +10,20 @@ export class GetUserByIdService implements UserService {
   }
 
   public async execute(id: number): Promise<Error | OmitUserRequest<User>> {
-    const result = await this.prisma.user.findUnique({
+    const result: OmitUserRequest<User> = await this.prisma.user.findUnique({
       where: {
-        id: id
+        id: id,
+      },
+      select: {
+        email: true,
+        name: true,
       },
     });
 
     if (!result) {
       return new Error("User not found!");
     }
-    const { password, created_at, updated_at, ...user } = result;
 
-    return user;
+    return result;
   }
 }
-
