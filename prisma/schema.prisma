@@ -15,6 +15,7 @@ model User {
   name       String
   email      String   @unique
   password   String
+  brand      String   @unique
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
 }
