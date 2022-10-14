@@ -16,19 +16,25 @@ model User {
   email      String   @unique
   password   String
   brand      String   @unique
+  Ox         Ox[]
+  active     Boolean  @default(true)
+  deleted_at DateTime @ignore
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
-  Ox         Ox[]
 }
 
 model Ox {
-  id        Int      @id @default(autoincrement())
-  marked    Boolean  @default(false)
-  earring   String?
-  born_date DateTime
-  owner     User     @relation(fields: [ownerId], references: [id])
-  ownerId   Int
-  genre     Oxgenre
+  id         Int      @id @default(autoincrement())
+  marked     Boolean  @default(false)
+  earring    String?
+  born_date  DateTime
+  owner      User     @relation(fields: [ownerId], references: [id])
+  ownerId    Int
+  genre      Oxgenre
+  active     Boolean  @default(true)
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  deleted_at DateTime @ignore
 }
 
 enum Oxgenre {
