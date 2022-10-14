@@ -6,6 +6,6 @@ export type RequestCreateUser = {
 
 export type OmitUserRequest<User> = Omit<
   User,
-  "password" | "created_at" | "updated_at"
->;
+  "id" | "password" | "created_at" | "updated_at"
+> | null;
 
