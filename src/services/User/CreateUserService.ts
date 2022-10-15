@@ -28,7 +28,7 @@ export default class CreateUserService implements UserService {
           brand: brand,
         },
       })
-      .catch((err) => {
+      .catch(err => {
         return new Error(err.message);
       });
 
@@ -36,7 +36,8 @@ export default class CreateUserService implements UserService {
       return result;
     }
 
-    const { password, created_at, updated_at, ...user } = result;
+    const { password, created_at, updated_at, deleted_at, ...user } =
+      result;
 
     return user;
   }
