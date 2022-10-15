@@ -1,3 +1,7 @@
-export type RequestCreateOx<Ox> = {
-  [P in keyof Ox]: Ox[P];
+import { Oxgenre } from "@prisma/client";
+
+export type RequestCreateOx = {
+  earring: string;
+  born_date: string;
+  genre: Oxgenre;
 };
