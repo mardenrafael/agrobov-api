@@ -9,7 +9,7 @@ export class GetOxService implements OxService {
   }
 
   public async execute(owner_id: number): Promise<Ox[] | Error> {
-    const result: Array<Ox> = await this.prisma.ox.findMany({
+    const result: Ox[] = await this.prisma.ox.findMany({
       where: {
         ownerId: owner_id,
       },
