@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev -T ./src/index"
+    "start": "ts-node-dev -T ./src/index",
+    "prisma:generate": "prisma generate"
   },
   "repository": {
     "type": "git",
