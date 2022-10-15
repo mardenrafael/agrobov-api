@@ -18,7 +18,7 @@ model User {
   brand      String   @unique
   Ox         Ox[]
   active     Boolean  @default(true)
-  deleted_at DateTime @ignore
+  deleted    Boolean  @default(false)
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
 }
@@ -34,7 +34,7 @@ model Ox {
   active     Boolean  @default(true)
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
-  deleted_at DateTime @ignore
+  deleted    Boolean  @default(false)
 }
 
 enum Oxgenre {
