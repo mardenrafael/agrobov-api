@@ -11,7 +11,8 @@ export class CreateOxService implements OxService{
 
   public async execute({
     earring,
-    born_date 
+    born_date ,
+    genre,
     }: RequestCreateOx,
     ownerId: number): Promise<Error | Ox> {
     const result: Ox | Error = await this.prisma.ox
@@ -19,6 +20,7 @@ export class CreateOxService implements OxService{
       data: {
         earring: earring,
         born_date: born_date,
+        genre: genre,
         ownerId: ownerId
       }
     }

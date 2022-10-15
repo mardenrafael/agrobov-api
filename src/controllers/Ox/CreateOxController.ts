@@ -6,9 +6,14 @@ import OxController from './interface/OxController';
 export default class CreateOxController implements OxController{
   public async handle(req: Request, res: Response): Promise<void> {
     const ownerId = req.params.id
-    const { earring, born_date} = req.body;
+    const { earring, born_date, genre} = req.body;
     const service = new CreateOxService(prisma);
-    const result = service.execute({earring, born_date}, Number(ownerId));
+    const result = await service.execute({
+      earring,
+      born_date,
+      genre
+      },
+      Number(ownerId));
 
     if(result instanceof Error){
       res.status(400).json({
@@ -17,6 +22,8 @@ export default class CreateOxController implements OxController{
       return
     };
 
-    res.status(200).json(result);
+    res.status(200).json({
+      result
+      });
   }
 }
