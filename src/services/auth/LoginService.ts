@@ -41,4 +41,3 @@ export class LoginService {
     return token;
   }
 }
-
