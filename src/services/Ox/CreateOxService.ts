@@ -10,7 +10,7 @@ export class CreateOxService implements OxService {
   }
 
   public async execute(
-    { earring, born_date, genre }: RequestCreateOx<Ox>,
+    { earring, born_date, genre }: RequestCreateOx,
     ownerId: number
   ): Promise<Error | Ox> {
     const result: Ox | Error = await this.prisma.ox
