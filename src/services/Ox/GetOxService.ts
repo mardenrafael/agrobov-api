@@ -22,3 +22,4 @@ export class GetOxService implements OxService {
     return result;
   }
 }
+

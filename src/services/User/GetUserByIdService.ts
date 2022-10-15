@@ -9,19 +9,21 @@ export class GetUserByIdService implements UserService {
     this.prisma = prisma;
   }
 
-  public async execute(id: number): Promise<Error | OmitUserRequest<User>> {
-    const result: OmitUserRequest<User> = await this.prisma.user.findUnique({
-      where: {
-        id: id,
-      },
-      select: {
-        email: true,
-        name: true,
-        brand: true,
-        active: true,
-        Ox: true,
-      },
-    });
+  public async execute(
+    id: number
+  ): Promise<Error | OmitUserRequest<User>> {
+    const result: OmitUserRequest<User> =
+      await this.prisma.user.findUnique({
+        where: {
+          id: id,
+        },
+        select: {
+          email: true,
+          name: true,
+          brand: true,
+          Ox: true,
+        },
+      });
 
     if (!result) {
       return new Error("User not found!");
@@ -30,3 +32,4 @@ export class GetUserByIdService implements UserService {
     return result;
   }
 }
+

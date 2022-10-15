@@ -1,0 +1,12 @@
+{
+  "arrowParens": "avoid",
+  "singleQuote": false,
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "editorconfig": true,
+  "insertPragma": false,
+  "parser": "typescript",
+  "printWidth": 75,
+  "quoteProps": "consistent"
+}
+
