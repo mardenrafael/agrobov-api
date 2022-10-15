@@ -18,11 +18,11 @@ export class CreateOxService implements OxService {
         data: {
           earring: earring,
           born_date: born_date,
-          ownerId: ownerId,
           genre: genre,
+          ownerId: ownerId,
         },
       })
-      .catch((err) => {
+      .catch(err => {
         return new Error(err.message);
       });
 
@@ -33,3 +33,4 @@ export class CreateOxService implements OxService {
     return result;
   }
 }
+
