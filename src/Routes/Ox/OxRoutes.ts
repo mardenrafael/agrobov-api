@@ -14,7 +14,7 @@ export default class OxRoutes {
 
   private config(): void {
     this.router.get("/user/:id/ox", new ValidateLogin().validate, new GetOxController().handle);
-    this.router.post("/user/:id/ox", new CreateOxController().handle);
+    this.router.post("/user/:id/ox", new ValidateLogin().validate, new CreateOxController().handle);
   }
 
   public export(): Router {
