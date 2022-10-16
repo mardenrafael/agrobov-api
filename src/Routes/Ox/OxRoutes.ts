@@ -2,6 +2,7 @@ import { Router } from "express";
 import GetOxController from "../../controllers/Ox/GetOxController";
 import CreateOxController from "../../controllers/Ox/CreateOxController";
 import { ValidateLogin } from "../../middlewares/ValidateLoginMiddleware";
+import { DeleteOxController } from "../../controllers/Ox/DeleteOxController";
 
 export default class OxRoutes {
   private readonly router: Router;
@@ -22,6 +23,11 @@ export default class OxRoutes {
       "/user/:id/ox",
       new ValidateLogin().validate,
       new CreateOxController().handle
+    );
+    this.router.delete(
+      "/user/ox",
+      new ValidateLogin().validate,
+      new DeleteOxController().handle
     );
   }
 

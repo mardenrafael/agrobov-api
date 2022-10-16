@@ -21,7 +21,9 @@ export class GetUserByIdService implements UserService {
           email: true,
           name: true,
           brand: true,
+          active: true,
           Ox: true,
+          deleted_at: true,
         },
       });
 
@@ -32,4 +34,3 @@ export class GetUserByIdService implements UserService {
     return result;
   }
 }
-
