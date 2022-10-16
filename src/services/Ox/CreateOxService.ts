@@ -1,4 +1,4 @@
-import { RequestCreateOx } from "./types/OxTypes";
+import { RequestCreateOx } from "./../User/types/OxTypes";
 import { PrismaClient, Ox } from "@prisma/client";
 import { OxService } from "./interface/OxService";
 
@@ -22,7 +22,7 @@ export class CreateOxService implements OxService {
           ownerId: ownerId,
         },
       })
-      .catch((err) => {
+      .catch(err => {
         return new Error(err.message);
       });
 
