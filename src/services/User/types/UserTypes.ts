@@ -2,6 +2,7 @@ export type RequestCreateUser = {
   name: string;
   email: string;
   passWord: string;
+  brand: string;
 };
 
 export type OmitUserRequest<User> = Omit<

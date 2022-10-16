@@ -17,6 +17,10 @@ export class GetUserByIdService implements UserService {
       select: {
         email: true,
         name: true,
+        brand: true,
+        active: true,
+        Ox: true,
+        deleted_at: true,
       },
     });
 
