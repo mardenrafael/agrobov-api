@@ -20,7 +20,7 @@ export class GetUserByIdService implements UserService {
         brand: true,
         active: true,
         Ox: true,
-        deleted: true
+        deleted_at: true,
       },
     });
 
