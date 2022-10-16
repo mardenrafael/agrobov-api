@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "nodemon --watch ./src --exec ts-node ./src/index.ts",
+    "prisma:push": "prisma db push",
     "prisma:generate": "prisma generate"
   },
   "repository": {
