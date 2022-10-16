@@ -11,30 +11,30 @@ datasource db {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   name       String
-  email      String   @unique
+  email      String    @unique
   password   String
-  brand      String   @unique
+  brand      String    @unique
   Ox         Ox[]
-  active     Boolean  @default(true)
-  deleted    Boolean  @default(false)
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
+  active     Boolean   @default(true)
+  deleted_at DateTime?
+  created_at DateTime  @default(now())
+  updated_at DateTime  @default(now())
 }
 
 model Ox {
-  id         Int      @id @default(autoincrement())
-  marked     Boolean  @default(false)
+  id         Int       @id @default(autoincrement())
+  marked     Boolean   @default(false)
   earring    String?
   born_date  DateTime
-  owner      User     @relation(fields: [ownerId], references: [id])
+  owner      User      @relation(fields: [ownerId], references: [id])
   ownerId    Int
   genre      Oxgenre
-  active     Boolean  @default(true)
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
-  deleted    Boolean  @default(false)
+  active     Boolean   @default(true)
+  created_at DateTime  @default(now())
+  updated_at DateTime  @default(now())
+  deleted_at DateTime?
 }
 
 enum Oxgenre {
