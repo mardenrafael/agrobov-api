@@ -1,11 +1,11 @@
-import { Router } from "express"; 
+import { Router } from "express";
 import GetOxController from "../../controllers/Ox/GetOxController";
 import CreateOxController from "../../controllers/Ox/CreateOxController";
-import { ValidateLogin } from "../../services/auth/ValidateLoginService";
+import { ValidateLogin } from "../../middlewares/ValidateLoginMiddleware";
 
 export default class OxRoutes {
   private readonly router: Router;
-  
+
   constructor() {
     this.router = Router();
 
@@ -13,8 +13,16 @@ export default class OxRoutes {
   }
 
   private config(): void {
-    this.router.get("/user/:id/ox", new ValidateLogin().validate, new GetOxController().handle);
-    this.router.post("/user/:id/ox", new ValidateLogin().validate, new CreateOxController().handle);
+    this.router.get(
+      "/user/:id/ox",
+      new ValidateLogin().validate,
+      new GetOxController().handle
+    );
+    this.router.post(
+      "/user/:id/ox",
+      new ValidateLogin().validate,
+      new CreateOxController().handle
+    );
   }
 
   public export(): Router {
