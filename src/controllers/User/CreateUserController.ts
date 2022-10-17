@@ -1,10 +1,14 @@
 import { Request, Response } from "express";
 import { CreateUserService } from "../../services/User";
+import corsConfig from "../../utils/Cors";
 import prisma from "../../utils/Prisma";
 import UserController from "./interface/UserController";
 
 export default class CreateUserController implements UserController {
   public async handle(req: Request, res: Response): Promise<void> {
+
+    res.set(corsConfig);
+    
     const { name, email, password, brand } = req.body;
     const service = new CreateUserService(prisma);
     const result = await service.execute({
