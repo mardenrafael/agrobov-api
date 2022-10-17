@@ -1,7 +1,7 @@
 import { Ox, PrismaClient } from "@prisma/client";
 import { OxService } from "./interface/OxService";
 
-type OxUpdateRequest<Ox> = {
+export type OxUpdateRequest<Ox> = {
   [P in keyof Ox]?: Ox[P];
 };
 
@@ -19,7 +19,7 @@ export class UpdateOxServiceS implements OxService {
     marked,
     genre,
     born_date,
-  }: OxUpdateRequest<Ox>): Promise<Ox | Ox[] | Error> {
+  }: OxUpdateRequest<Ox>): Promise<Ox | Error> {
     try {
       const ox = await this.prisma.ox.update({
         where: {
@@ -42,4 +42,3 @@ export class UpdateOxServiceS implements OxService {
     }
   }
 }
-
