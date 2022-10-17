@@ -9,6 +9,7 @@ export class GetOxService implements OxService {
   }
 
   public async execute(owner_id: number): Promise<Ox[] | Error> {
+    await this.prisma.$connect();
     const result: Ox[] = await this.prisma.ox.findMany({
       where: {
         ownerId: owner_id,
@@ -16,10 +17,11 @@ export class GetOxService implements OxService {
     });
 
     if (!result) {
+      this.prisma.$disconnect();
       return new Error("Ox not found!");
     }
 
+    this.prisma.$disconnect();
     return result;
   }
 }
-

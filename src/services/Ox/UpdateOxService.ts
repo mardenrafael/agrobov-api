@@ -21,6 +21,7 @@ export class UpdateOxServiceS implements OxService {
     born_date,
   }: OxUpdateRequest<Ox>): Promise<Ox | Error> {
     try {
+      await this.prisma.$connect();
       const ox = await this.prisma.ox.update({
         where: {
           id,
@@ -34,10 +35,10 @@ export class UpdateOxServiceS implements OxService {
         },
       });
 
+      await this.prisma.$disconnect();
       return ox;
     } catch (error) {
-      console.log(error);
-
+      await this.prisma.$disconnect();
       return new Error("Erro on update Ox");
     }
   }

@@ -13,6 +13,8 @@ export class CreateOxService implements OxService {
     { earring, born_date, genre }: RequestCreateOx,
     ownerId: number
   ): Promise<Error | Ox> {
+    await this.prisma.$connect();
+
     const result: Ox | Error = await this.prisma.ox
       .create({
         data: {
@@ -27,9 +29,11 @@ export class CreateOxService implements OxService {
       });
 
     if (result instanceof Error) {
+      await this.prisma.$disconnect();
       return result;
     }
 
+    await this.prisma.$disconnect();
     return result;
   }
 }

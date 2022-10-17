@@ -12,6 +12,7 @@ export class GetUserByIdService implements UserService {
   public async execute(
     id: number
   ): Promise<Error | OmitUserRequest<User>> {
+    await this.prisma.$connect();
     const result: OmitUserRequest<User> =
       await this.prisma.user.findUnique({
         where: {
@@ -28,9 +29,11 @@ export class GetUserByIdService implements UserService {
       });
 
     if (!result) {
+      await this.prisma.$disconnect();
       return new Error("User not found!");
     }
 
+    await this.prisma.$disconnect();
     return result;
   }
 }
