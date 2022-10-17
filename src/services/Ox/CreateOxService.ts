@@ -1,6 +1,6 @@
-import { RequestCreateOx } from "./../User/types/OxTypes";
 import { PrismaClient, Ox } from "@prisma/client";
 import { OxService } from "./interface/OxService";
+import { RequestCreateOx } from "./types/OxTypes";
 
 export class CreateOxService implements OxService {
   private readonly prisma: PrismaClient;

@@ -12,7 +12,7 @@ export default class CreateOxController implements OxController {
     const result = await service.execute(
       {
         earring,
-        born_date,
+        born_date: date,
         genre,
       },
       Number(ownerId)
