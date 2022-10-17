@@ -1,5 +1,5 @@
 import { Express, json } from "express";
-import cors from "cors"
+import cors from "cors";
 import { AuthMiddleware } from "./Routes/Auth/AuthRoutes";
 import OxRoutes from "./Routes/Ox/OxRoutes";
 import UserRoutes from "./Routes/User/UserRoutes";
@@ -22,7 +22,7 @@ export default class App {
    */
   private config(): void {
     this.app.use(json());
-    this.app.use(cors())
+    this.app.use(cors());
   }
 
   /**
