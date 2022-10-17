@@ -1,14 +1,10 @@
 import { Request, Response } from "express";
 import { GetUserByIdService } from "../../services/User/GetUserByIdService";
-import corsConfig from "../../utils/Cors";
 import prisma from "../../utils/Prisma";
 import UserController from "./interface/UserController";
 
 export default class GetUserByIdController implements UserController {
   public async handle(req: Request, res: Response): Promise<void> {
-
-    res.set(corsConfig)
-
     const id = req.params.id;
     const service = new GetUserByIdService(prisma);
     const result = await service.execute(Number(id));
@@ -22,7 +18,7 @@ export default class GetUserByIdController implements UserController {
     }
 
     res.status(200).json({
-      result
+      result,
     });
   }
 }
