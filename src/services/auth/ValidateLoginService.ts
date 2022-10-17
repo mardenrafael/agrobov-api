@@ -6,7 +6,7 @@ export class ValidateLogin {
     req: Request,
     res: Response,
     next: NextFunction
-  ): Promise<Error | NextFunction | void> {
+  ): Promise<void> {
     const token = req.headers.authorization;
 
     if (!token) {
