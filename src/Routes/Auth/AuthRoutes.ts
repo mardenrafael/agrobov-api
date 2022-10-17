@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { LoginController } from "../controllers/auth/LoginController";
+import { LoginController } from "../../controllers/auth/LoginController";
 
 export class AuthMiddleware {
   private readonly route: Router;
