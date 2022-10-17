@@ -17,8 +17,8 @@ export default class CreateUserService implements UserService {
     passWord,
     brand,
   }: RequestUser): Promise<OmitUserRequest<User> | Error> {
+    await this.prisma.$connect();
     const hashPassword = await bcrypt.hash(passWord, 10);
-
     const result: User | Error = await this.prisma.user
       .create({
         data: {
@@ -28,17 +28,20 @@ export default class CreateUserService implements UserService {
           brand: brand,
         },
       })
-      .catch(err => {
+      .catch(async err => {
+        await this.prisma.$disconnect();
         return new Error(err.message);
       });
 
     if (result instanceof Error) {
+      await this.prisma.$disconnect();
       return result;
     }
 
     const { password, created_at, updated_at, deleted_at, ...user } =
       result;
 
+    await this.prisma.$disconnect();
     return user;
   }
 }

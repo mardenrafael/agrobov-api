@@ -2,7 +2,7 @@ import { LoginController } from "./../../controllers/auth/LoginController";
 import { Router } from "express";
 import CreateUserController from "../../controllers/User/CreateUserController";
 import GetUserByIdController from "../../controllers/User/GetUserByIdController";
-import { ValidateLogin } from "../../services/auth/ValidateLoginService";
+import { ValidateLogin } from "../../middlewares/ValidateLoginMiddleware";
 import { CorsMiddleware } from "../../middlewares/CorsMiddleware";
 
 export default class UserRoutes {
@@ -17,8 +17,8 @@ export default class UserRoutes {
   private config(): void {
     this.router.get(
       "/user/:id",
-      new ValidateLogin().validate,
       new CorsMiddleware().setCors,
+      new ValidateLogin().validate,
       new GetUserByIdController().handle
     );
     this.router.get(

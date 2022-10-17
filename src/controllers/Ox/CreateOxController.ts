@@ -7,9 +7,14 @@ export default class CreateOxController implements OxController {
   public async handle(req: Request, res: Response): Promise<void> {
     const ownerId = req.params.id;
     const { earring, born_date, genre } = req.body;
+    const date = new Date(born_date);
     const service = new CreateOxService(prisma);
     const result = await service.execute(
-      { earring, born_date, genre },
+      {
+        earring,
+        born_date: date,
+        genre,
+      },
       Number(ownerId)
     );
 

@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
-import { GetOxService } from "../../services/Ox/GetOxService";
+import { DeleteOxService } from "../../services/Ox/DeleteOxService";
 import prisma from "../../utils/Prisma";
 import OxController from "./interface/OxController";
 
-export default class GetOxController implements OxController {
+export class DeleteOxController implements OxController {
   public async handle(req: Request, res: Response): Promise<void> {
-    const ox_owner = req.params.id;
-    const service = new GetOxService(prisma);
-    const result = await service.execute(Number(ox_owner));
+    const { id } = req.body;
+    const service = new DeleteOxService(prisma);
+
+    const result = await service.execute({ id });
 
     if (result instanceof Error) {
       res.status(400).json({
@@ -15,6 +16,9 @@ export default class GetOxController implements OxController {
       });
       return;
     }
-    res.status(200).json({ result });
+    res.status(200).json({
+      result,
+    });
   }
 }
+
