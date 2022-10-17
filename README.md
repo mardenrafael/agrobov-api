@@ -1,4 +1,3 @@
-[![Lint Code Base](https://github.com/mardenrafael/contaboi-backend/actions/workflows/super-linter.yml/badge.svg)](https://github.com/mardenrafael/contaboi-backend/actions/workflows/super-linter.yml)
 [![CodeQL](https://github.com/mardenrafael/contaboi-backend/actions/workflows/codeql.yml/badge.svg)](https://github.com/mardenrafael/contaboi-backend/actions/workflows/codeql.yml)
 
 # AGROBOV API
