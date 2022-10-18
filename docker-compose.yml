@@ -24,6 +24,7 @@ services:
       - 3030:3030
     volumes:
       - .:/usr/app
+      - /usr/app/node_modules
     environment:
       - DATABASE_URL=postgresql://postgres:r0Ot@369@db:5432/agrobovdb?schema=public
     depends_on:

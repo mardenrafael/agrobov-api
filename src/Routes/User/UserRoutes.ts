@@ -31,6 +31,21 @@ export default class UserRoutes {
       new CorsMiddleware().setCors,
       new CreateUserController().handle
     );
+
+    this.router.put(
+      "/user",     // Create class to Update
+      new CorsMiddleware().setCors,
+      new ValidateLogin().validate,
+      new CreateUserController().handle
+    );
+
+    this.router.delete(
+      "/user",   // Create class to delete
+      new CorsMiddleware().setCors,
+      new ValidateLogin().validate,
+      new CreateUserController().handle
+    );
+
   }
 
   public export(): Router {
