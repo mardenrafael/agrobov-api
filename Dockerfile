@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
+RUN npm rebuild bcrypt --build-from-source
+
 EXPOSE 3030
 
 CMD [ "npm", "start" ]
