@@ -1,47 +1,33 @@
-import { PrismaClient, User } from "@prisma/client";
-import { RequestUser } from ".";
 import { UserService } from "./interface/UserService";
-import { OmitUserRequest } from "./types/UserTypes";
 import bcrypt from "bcrypt";
+import { TUser } from "../../repos/Types/TUser";
+import { IUser } from "../../repos/interfaces/IUser";
 
 export default class CreateUserService implements UserService {
-  private readonly prisma: PrismaClient;
+  private readonly repo: IUser;
 
-  constructor(prisma: PrismaClient) {
-    this.prisma = prisma;
+  constructor(repo: IUser) {
+    this.repo = repo;
   }
 
   public async execute({
     name,
     email,
-    passWord,
+    password,
     brand,
-  }: RequestUser): Promise<OmitUserRequest<User> | Error> {
-    await this.prisma.$connect();
-    const hashPassword = await bcrypt.hash(passWord, 10);
-    const result: User | Error = await this.prisma.user
-      .create({
-        data: {
-          name: name,
-          email: email,
-          password: hashPassword,
-          brand: brand,
-        },
-      })
-      .catch(async err => {
-        await this.prisma.$disconnect();
-        return new Error(err.message);
+  }: Omit<TUser, "id">): Promise<Omit<TUser, "id"> | Error> {
+    const hashPassword = await bcrypt.hash(password, 10);
+    try {
+      const user = this.repo.createUser({
+        name,
+        brand,
+        email,
+        password: hashPassword,
       });
 
-    if (result instanceof Error) {
-      await this.prisma.$disconnect();
-      return result;
+      return user;
+    } catch (error) {
+      throw error;
     }
-
-    const { password, created_at, updated_at, deleted_at, ...user } =
-      result;
-
-    await this.prisma.$disconnect();
-    return user;
   }
 }
