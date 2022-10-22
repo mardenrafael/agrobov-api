@@ -1,11 +1,17 @@
 import { TUser } from "../types/TUser";
 
 export interface IUser {
-  getUserById({ id }: TUser): Promise<TUser>;
+  getUserById({
+    id,
+  }: Pick<TUser, "id">): Promise<Omit<TUser, "id"> | Error>;
   createUser({
     name,
     brand,
     email,
     password,
-  }: Omit<TUser, "id">): Promise<TUser>;
+  }: Omit<TUser, "id">): Promise<Omit<TUser, "id"> | Error>;
+  updateUser({
+    name,
+    id,
+  }: Partial<Pick<TUser, "name" | "id">>): Promise<void>;
 }
