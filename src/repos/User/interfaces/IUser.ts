@@ -13,5 +13,7 @@ export interface IUser {
   updateUser({
     name,
     id,
-  }: Partial<Pick<TUser, "name" | "id">>): Promise<void>;
+  }: Partial<Pick<TUser, "name" | "id">>): Promise<
+    Omit<TUser, "id" | "password"> | Error
+  >;
 }
