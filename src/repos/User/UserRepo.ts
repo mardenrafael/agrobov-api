@@ -1,12 +1,12 @@
 import { PrismaClient } from "@prisma/client";
-import { IUser } from "../interfaces/IUser";
-import { TUser } from "../Types/TUser";
+import { IUser } from "./interfaces/IUser";
+import { TUser } from "./Types/TUser";
 
 export default class UserRepo implements IUser {
   private readonly prisma: PrismaClient;
 
-  constructor() {
-    this.prisma = new PrismaClient();
+  constructor(prisma: PrismaClient) {
+    this.prisma = prisma;
   }
   getUserById({ id }: TUser): Promise<TUser> {
     throw new Error("Method not implemented." + id);
@@ -17,9 +17,8 @@ export default class UserRepo implements IUser {
     email,
     brand,
     password,
-  }: TUser): Promise<Omit<TUser, "id">> {
+  }: TUser): Promise<TUser> {
     try {
-      await this.prisma.$connect();
       const result = await this.prisma.user.create({
         data: {
           name,
@@ -28,6 +27,7 @@ export default class UserRepo implements IUser {
           password,
         },
         select: {
+          id: true,
           Ox: true,
           name: true,
           email: true,
@@ -36,10 +36,8 @@ export default class UserRepo implements IUser {
         },
       });
 
-      await this.prisma.$disconnect();
       return result;
     } catch (error) {
-      await this.prisma.$disconnect();
       throw error;
     }
   }
