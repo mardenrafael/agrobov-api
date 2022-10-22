@@ -1,7 +1,7 @@
 import { UserService } from "./interface/UserService";
 import bcrypt from "bcrypt";
-import { TUser } from "../../repos/Types/TUser";
-import { IUser } from "../../repos/interfaces/IUser";
+import { IUser } from "../../repos/User/interfaces/IUser";
+import { TUser } from "../../repos/User/Types/TUser";
 
 export default class CreateUserService implements UserService {
   private readonly repo: IUser;
@@ -15,7 +15,7 @@ export default class CreateUserService implements UserService {
     email,
     password,
     brand,
-  }: Omit<TUser, "id">): Promise<Omit<TUser, "id"> | Error> {
+  }: Omit<TUser, "id">): Promise<TUser | Error> {
     const hashPassword = await bcrypt.hash(password, 10);
     try {
       const user = this.repo.createUser({
