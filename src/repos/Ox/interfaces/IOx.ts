@@ -1,15 +1,4 @@
-import { Oxgenre } from "@prisma/client";
-import { TUser } from "../../User/types/TUser";
-
-type TOx = {
-  id: number;
-  marked: boolean;
-  earring: string;
-  born_date: Date;
-  owner: TUser;
-  ownerId: number;
-  genre: Oxgenre;
-};
+import { TOx } from "../types/TOx";
 
 export interface IOx {
   createOx({
@@ -18,7 +7,7 @@ export interface IOx {
     genre,
     marked,
     ownerId,
-  }: Omit<TOx, "id" | "owner">): Promise<Omit<TOx, "id"> | Error>;
+  }: Omit<TOx, "id">): Promise<Omit<TOx, "id"> | Error>;
   getOxById({ id }: Pick<TOx, "id">): Promise<Omit<TOx, "id"> | Error>;
   DeleteOx({ id }: Pick<TOx, "id">): Promise<Omit<TOx, "id"> | Error>;
   updateOx(
@@ -29,6 +18,6 @@ export interface IOx {
       genre,
       earring,
       born_date,
-    }: Partial<Omit<TOx, "owner" | "id">>
+    }: Partial<Omit<TOx, "id">>
   ): Promise<Omit<TOx, "id"> | Error>;
 }
