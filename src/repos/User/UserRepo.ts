@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { IUser } from "./interfaces/IUser";
-import { TUser } from "./Types/TUser";
+import { TUser } from "./types/TUser";
 
 export default class UserRepo implements IUser {
   private readonly prisma: PrismaClient;
