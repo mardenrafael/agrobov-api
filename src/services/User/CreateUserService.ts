@@ -15,7 +15,7 @@ export default class CreateUserService implements UserService {
     email,
     password,
     brand,
-  }: Omit<TUser, "id">): Promise<TUser | Error> {
+  }: Omit<TUser, "id">): Promise<Omit<TUser, "id"> | Error> {
     const hashPassword = await bcrypt.hash(password, 10);
     try {
       const user = this.repo.createUser({
