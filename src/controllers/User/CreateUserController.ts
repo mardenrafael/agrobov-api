@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
 import UserRepo from "../../repos/User/UserRepo";
 import { CreateUserService } from "../../services/User";
+import prisma from "../../utils/Prisma";
 import UserController from "./interface/UserController";
 
 export default class CreateUserController implements UserController {
   public async handle(req: Request, res: Response): Promise<void> {
     const { name, email, password, brand } = req.body;
-    const service = new CreateUserService(new UserRepo());
+    const service = new CreateUserService(new UserRepo(prisma));
     const result = await service.execute({
       name,
       email,
