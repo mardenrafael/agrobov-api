@@ -1,39 +1,31 @@
-import { PrismaClient, Ox } from "@prisma/client";
+import { IOx } from "../../repos/Ox/interfaces/IOx";
+import { TOx } from "../../repos/Ox/types/TOx";
 import { OxService } from "./interface/OxService";
 import { RequestCreateOx } from "./types/OxTypes";
 
 export class CreateOxService implements OxService {
-  private readonly prisma: PrismaClient;
+  private readonly repo: IOx;
 
-  constructor(prisma: PrismaClient) {
-    this.prisma = prisma;
+  constructor(repo: IOx) {
+    this.repo = repo;
   }
 
   public async execute(
-    { earring, born_date, genre }: RequestCreateOx,
+    { earring, born_date, genre, marked }: RequestCreateOx,
     ownerId: number
-  ): Promise<Error | Ox> {
-    await this.prisma.$connect();
-
-    const result: Ox | Error = await this.prisma.ox
-      .create({
-        data: {
-          earring: earring,
-          born_date: born_date,
-          genre: genre,
-          ownerId: ownerId,
-        },
-      })
-      .catch(err => {
-        return new Error(err.message);
+  ): Promise<Error | Omit<TOx, "id">> {
+    try {
+      const ox = await this.repo.createOx({
+        earring,
+        born_date,
+        genre,
+        marked,
+        ownerId,
       });
 
-    if (result instanceof Error) {
-      await this.prisma.$disconnect();
-      return result;
+      return ox;
+    } catch (error) {
+      throw error;
     }
-
-    await this.prisma.$disconnect();
-    return result;
   }
 }
