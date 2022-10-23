@@ -36,8 +36,29 @@ export default class UserRepo implements IUser {
     }
   }
 
-  getUserById({ id }: TUser): Promise<TUser> {
-    throw new Error("Method not implemented." + id);
+  public async getUserById({
+    id,
+  }: Pick<TUser, "id">): Promise<Omit<TUser, "id" | "password"> | Error> {
+    try {
+      const user = await this.prisma.user.findUnique({
+        where: {
+          id,
+        },
+        select: {
+          email: true,
+          name: true,
+          brand: true,
+          Ox: true,
+        },
+      });
+
+      if (!user) {
+        throw new Error("User not found");
+      }
+      return user;
+    } catch (error) {
+      throw error;
+    }
   }
 
   public async createUser({

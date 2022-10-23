@@ -1,39 +1,26 @@
-import { PrismaClient, User } from "@prisma/client";
+import { User } from "@prisma/client";
+import { IUser } from "../../repos/User/interfaces/IUser";
 import { UserService } from "./interface/UserService";
 import { OmitUserRequest } from "./types/UserTypes";
 
 export class GetUserByIdService implements UserService {
-  private readonly prisma: PrismaClient;
+  private readonly repo: IUser;
 
-  constructor(prisma: PrismaClient) {
-    this.prisma = prisma;
+  constructor(repo: IUser) {
+    this.repo = repo;
   }
 
   public async execute(
     id: number
   ): Promise<Error | OmitUserRequest<User>> {
-    await this.prisma.$connect();
-    const result: OmitUserRequest<User> =
-      await this.prisma.user.findUnique({
-        where: {
-          id: id,
-        },
-        select: {
-          email: true,
-          name: true,
-          brand: true,
-          active: true,
-          Ox: true,
-          deleted_at: true,
-        },
+    try {
+      const user = await this.repo.getUserById({
+        id,
       });
 
-    if (!result) {
-      await this.prisma.$disconnect();
-      return new Error("User not found!");
+      return user;
+    } catch (error) {
+      throw error;
     }
-
-    await this.prisma.$disconnect();
-    return result;
   }
 }

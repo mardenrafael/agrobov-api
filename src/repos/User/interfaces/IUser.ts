@@ -3,7 +3,7 @@ import { TUser } from "../types/TUser";
 export interface IUser {
   getUserById({
     id,
-  }: Pick<TUser, "id">): Promise<Omit<TUser, "id"> | Error>;
+  }: Pick<TUser, "id">): Promise<Omit<TUser, "id" | "password"> | Error>;
   createUser({
     name,
     brand,
