@@ -3,6 +3,7 @@ import cors from "cors";
 import { AuthMiddleware } from "./Routes/Auth/AuthRoutes";
 import OxRoutes from "./Routes/Ox/OxRoutes";
 import UserRoutes from "./Routes/User/UserRoutes";
+import limiter from "./utils/Limiter";
 
 export default class App {
   private readonly app: Express;
@@ -23,6 +24,7 @@ export default class App {
   private config(): void {
     this.app.use(json());
     this.app.use(cors());
+    this.app.use(limiter)
   }
 
   /**
