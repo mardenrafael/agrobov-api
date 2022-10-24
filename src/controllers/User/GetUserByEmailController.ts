@@ -1,13 +1,18 @@
 import { Request, Response } from "express";
-import { GetUserByIdService } from "../../services/User/GetUserByIdService";
+import { GetUserByEmailService } from "../../services/User/GetUserByEmailService";
 import prisma from "../../utils/Prisma";
 import UserController from "./interface/UserController";
 
-export default class GetUserByIdController implements UserController {
+export default class GetUserByEmailController implements UserController {
   public async handle(req: Request, res: Response): Promise<void> {
-    const id = req.params.id;
-    const service = new GetUserByIdService(prisma);
-    const result = await service.execute(Number(id));
+    const email = req.query.email;
+
+    if(typeof email !== "string") {
+      return
+    }
+
+    const service = new GetUserByEmailService(prisma);
+    const result = await service.execute(email);
 
     if (result instanceof Error) {
       res.status(400).json({

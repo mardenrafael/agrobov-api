@@ -2,7 +2,7 @@ import { PrismaClient, User } from "@prisma/client";
 import { UserService } from "./interface/UserService";
 import { OmitUserRequest } from "./types/UserTypes";
 
-export class GetUserByIdService implements UserService {
+export class GetUserByEmailService implements UserService {
   private readonly prisma: PrismaClient;
 
   constructor(prisma: PrismaClient) {
@@ -10,13 +10,13 @@ export class GetUserByIdService implements UserService {
   }
 
   public async execute(
-    id: number
+    email: string
   ): Promise<Error | OmitUserRequest<User>> {
     await this.prisma.$connect();
     const result: OmitUserRequest<User> =
       await this.prisma.user.findUnique({
         where: {
-          id: id,
+          email: email,
         },
         select: {
           email: true,
