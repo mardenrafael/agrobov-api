@@ -3,7 +3,7 @@ import { IUser } from "../../repos/User/interfaces/IUser";
 import { UserService } from "./interface/UserService";
 import { OmitUserRequest } from "./types/UserTypes";
 
-export class GetUserByIdService implements UserService {
+export class GetUserByEmailService implements UserService {
   private readonly repo: IUser;
 
   constructor(repo: IUser) {
@@ -11,11 +11,11 @@ export class GetUserByIdService implements UserService {
   }
 
   public async execute(
-    id: number
+    email: string
   ): Promise<Error | OmitUserRequest<User>> {
     try {
-      const user = await this.repo.getUserById({
-        id,
+      const user = await this.repo.getUserByEmail({
+        email,
       });
 
       return user;
