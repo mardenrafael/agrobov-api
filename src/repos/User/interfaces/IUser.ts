@@ -1,9 +1,11 @@
 import { TUser } from "../types/TUser";
 
 export interface IUser {
-  getUserById({
-    id,
-  }: Pick<TUser, "id">): Promise<Omit<TUser, "id" | "password"> | Error>;
+  getUserByEmail({
+    email,
+  }: Pick<TUser, "email">): Promise<
+    Omit<TUser, "id" | "password"> | Error
+  >;
   createUser({
     name,
     brand,

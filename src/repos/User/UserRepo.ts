@@ -36,13 +36,15 @@ export default class UserRepo implements IUser {
     }
   }
 
-  public async getUserById({
-    id,
-  }: Pick<TUser, "id">): Promise<Omit<TUser, "id" | "password"> | Error> {
+  public async getUserByEmail({
+    email,
+  }: Pick<TUser, "email">): Promise<
+    Omit<TUser, "id" | "password"> | Error
+  > {
     try {
       const user = await this.prisma.user.findUnique({
         where: {
-          id,
+          email,
         },
         select: {
           email: true,

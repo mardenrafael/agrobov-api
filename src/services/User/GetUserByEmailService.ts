@@ -13,8 +13,9 @@ export class GetUserByEmailService implements UserService {
   public async execute(
     email: string
   ): Promise<Error | OmitUserRequest<User>> {
-      const user = await this.repo.getUserById({
-        email
+    try {
+      const user = await this.repo.getUserByEmail({
+        email,
       });
 
       return user;
