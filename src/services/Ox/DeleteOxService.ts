@@ -1,32 +1,22 @@
-import { Ox, PrismaClient } from "@prisma/client";
+import { IOx } from "../../repos/Ox/interfaces/IOx";
+import { TOx } from "../../repos/Ox/types/TOx";
 import { OxService } from "./interface/OxService";
 
-type OxDeleteRequest = {
-  id: number;
-};
-
 export class DeleteOxService implements OxService {
-  private readonly prisma: PrismaClient;
+  private readonly repo: IOx;
 
-  constructor(prisma: PrismaClient) {
-    this.prisma = prisma;
+  constructor(repo: IOx) {
+    this.repo = repo;
   }
 
   public async execute({
     id,
-  }: OxDeleteRequest): Promise<Ox | Ox[] | Error> {
+  }: Pick<TOx, "id">): Promise<Omit<TOx, "id"> | Error> {
     try {
-      await this.prisma.$connect();
-      const Ox = await this.prisma.ox.delete({
-        where: {
-          id,
-        },
-      });
+      const ox = await this.repo.DeleteOx({ id });
 
-      await this.prisma.$disconnect();
-      return Ox;
+      return ox;
     } catch (error) {
-      await this.prisma.$disconnect();
       return new Error("Error on delete Ox");
     }
   }

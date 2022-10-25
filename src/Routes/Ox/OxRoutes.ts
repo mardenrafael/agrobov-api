@@ -1,5 +1,5 @@
 import { Router } from "express";
-import GetOxController from "../../controllers/Ox/GetOxController";
+import GetOxByIdController from "../../controllers/Ox/GetOxByIdController";
 import CreateOxController from "../../controllers/Ox/CreateOxController";
 import { ValidateLogin } from "../../middlewares/ValidateLoginMiddleware";
 import { DeleteOxController } from "../../controllers/Ox/DeleteOxController";
@@ -20,7 +20,7 @@ export default class OxRoutes {
       "/user/:id/ox",
       new CorsMiddleware().setCors,
       new ValidateLogin().validate,
-      new GetOxController().handle
+      new GetOxByIdController().handle
     );
     this.router.post(
       "/user/:id/ox",

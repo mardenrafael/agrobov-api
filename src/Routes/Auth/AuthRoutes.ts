@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { LoginController } from "../../controllers/auth/LoginController";
 
-export class AuthMiddleware {
+export class Auth {
   private readonly route: Router;
 
   constructor() {
@@ -18,4 +18,3 @@ export class AuthMiddleware {
     return this.route;
   }
 }
-
