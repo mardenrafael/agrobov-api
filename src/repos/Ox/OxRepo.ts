@@ -60,8 +60,27 @@ export class OxRepo implements IOx {
       throw error;
     }
   }
-  DeleteOx({ id }: Pick<TOx, "id">): Promise<Omit<TOx, "id"> | Error> {
-    throw new Error("Method not implemented." + id);
+  public async DeleteOx({
+    id,
+  }: Pick<TOx, "id">): Promise<Omit<TOx, "id"> | Error> {
+    try {
+      const ox = await prisma.ox.delete({
+        where: {
+          id,
+        },
+        select: {
+          marked: true,
+          ownerId: true,
+          genre: true,
+          born_date: true,
+          earring: true,
+        },
+      });
+
+      return ox;
+    } catch (error) {
+      throw error;
+    }
   }
   updateOx(
     { id }: Pick<TOx, "id">,
