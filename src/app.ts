@@ -1,6 +1,6 @@
 import { Express, json } from "express";
 import cors from "cors";
-import { AuthMiddleware } from "./Routes/Auth/AuthRoutes";
+import { Auth } from "./Routes/Auth/AuthRoutes";
 import OxRoutes from "./Routes/Ox/OxRoutes";
 import UserRoutes from "./Routes/User/UserRoutes";
 import limiter from "./utils/Limiter";
@@ -45,7 +45,7 @@ export default class App {
    * }
    */
   private routes(): void {
-    this.app.use(new AuthMiddleware().export());
+    this.app.use(new Auth().export());
     this.app.use(new UserRoutes().export());
     this.app.use(new OxRoutes().export());
   }

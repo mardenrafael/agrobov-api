@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import UserRepo from "../../repos/User/UserRepo";
 import { GetUserByEmailService } from "../../services/User/GetUserByEmailService";
 import prisma from "../../utils/Prisma";
 import UserController from "./interface/UserController";
@@ -7,11 +8,11 @@ export default class GetUserByEmailController implements UserController {
   public async handle(req: Request, res: Response): Promise<void> {
     const email = req.query.email;
 
-    if(typeof email !== "string") {
-      return
+    if (typeof email !== "string") {
+      return;
     }
 
-    const service = new GetUserByEmailService(prisma);
+    const service = new GetUserByEmailService(new UserRepo(prisma));
     const result = await service.execute(email);
 
     if (result instanceof Error) {
