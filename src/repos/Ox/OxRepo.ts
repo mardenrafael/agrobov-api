@@ -82,7 +82,7 @@ export class OxRepo implements IOx {
       throw error;
     }
   }
-  updateOx(
+  public async updateOx(
     { id }: Pick<TOx, "id">,
     {
       ownerId,
@@ -92,16 +92,23 @@ export class OxRepo implements IOx {
       born_date,
     }: Partial<Omit<TOx, "id">>
   ): Promise<Omit<TOx, "id"> | Error> {
-    throw new Error(
-      "Method not implemented." +
-        ownerId +
-        id +
-        earring +
-        born_date +
-        earring +
-        genre +
-        id +
-        marked
-    );
+    try {
+      const ox = await prisma.ox.update({
+        where: {
+          id,
+        },
+        data: {
+          ownerId,
+          earring,
+          genre,
+          marked,
+          born_date,
+        },
+      });
+
+      return ox;
+    } catch (error) {
+      return new Error("Erro on update Ox");
+    }
   }
 }

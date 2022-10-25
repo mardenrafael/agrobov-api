@@ -1,15 +1,12 @@
-import { Ox, PrismaClient } from "@prisma/client";
+import { IOx } from "../../repos/Ox/interfaces/IOx";
+import { TOx } from "../../repos/Ox/types/TOx";
 import { OxService } from "./interface/OxService";
 
-export type OxUpdateRequest<Ox> = {
-  [P in keyof Ox]?: Ox[P];
-};
-
 export class UpdateOxServiceS implements OxService {
-  private readonly prisma: PrismaClient;
+  private readonly repo: IOx;
 
-  constructor(prisma: PrismaClient) {
-    this.prisma = prisma;
+  constructor(repo: IOx) {
+    this.repo = repo;
   }
 
   public async execute({
@@ -19,27 +16,22 @@ export class UpdateOxServiceS implements OxService {
     marked,
     genre,
     born_date,
-  }: OxUpdateRequest<Ox>): Promise<Ox | Error> {
+  }: TOx): Promise<Omit<TOx, "id"> | Error> {
     try {
-      await this.prisma.$connect();
-      const ox = await this.prisma.ox.update({
-        where: {
-          id,
-        },
-        data: {
+      const ox = await this.repo.updateOx(
+        { id },
+        {
           ownerId,
-          earring,
-          genre,
           marked,
+          genre,
+          earring,
           born_date,
-        },
-      });
+        }
+      );
 
-      await this.prisma.$disconnect();
       return ox;
     } catch (error) {
-      await this.prisma.$disconnect();
-      return new Error("Erro on update Ox");
+      throw error;
     }
   }
 }
