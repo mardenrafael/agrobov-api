@@ -18,4 +18,9 @@ export interface IUser {
   }: Partial<Pick<TUser, "name" | "id">>): Promise<
     Omit<TUser, "id" | "password"> | Error
   >;
+  deleteUser({
+    email,
+  }: Pick<TUser, "email">): Promise<
+    Error | Omit<TUser, "password" | "id">
+  >;
 }

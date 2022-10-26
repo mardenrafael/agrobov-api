@@ -8,6 +8,24 @@ export default class UserRepo implements IUser {
   constructor(prisma: PrismaClient) {
     this.prisma = prisma;
   }
+
+  public async deleteUser({
+    email,
+  }: Pick<TUser, "email">): Promise<
+    Omit<TUser, "id" | "password"> | Error
+  > {
+    try {
+      const user = await this.prisma.user.delete({
+        where: {
+          email,
+        },
+      });
+
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  }
   public async updateUser({
     name,
     id,
