@@ -4,6 +4,7 @@ import CreateUserController from "../../controllers/User/CreateUserController";
 import GetUserByEmailController from "../../controllers/User/GetUserByEmailController";
 import { ValidateLogin } from "../../middlewares/ValidateLoginMiddleware";
 import { CorsMiddleware } from "../../middlewares/CorsMiddleware";
+import { DeleteUserController } from "../../controllers/DeleteUserController";
 
 export default class UserRoutes {
   private readonly router: Router;
@@ -40,10 +41,10 @@ export default class UserRoutes {
     );
 
     this.router.delete(
-      "/user", // Create class to delete
+      "/user",
       new CorsMiddleware().setCors,
       new ValidateLogin().validate,
-      new CreateUserController().handle
+      new DeleteUserController().handle
     );
   }
 
