@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
-import UserRepo from "../repos/User/UserRepo";
-import DeleteUserService from "../services/User/DeleteUserService";
-import prisma from "../utils/Prisma";
+import UserRepo from "../../repos/User/UserRepo";
+import DeleteUserService from "../../services/User/DeleteUserService";
 
 export class DeleteUserController {
   public async handle(req: Request, res: Response): Promise<void> {
-    const service = new DeleteUserService(new UserRepo(prisma));
+    const service = new DeleteUserService(new UserRepo());
     const { email } = req.body;
 
     const result = await service.execute({ email });
