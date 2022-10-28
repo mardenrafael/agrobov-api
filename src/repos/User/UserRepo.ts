@@ -1,13 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../utils/Prisma";
 import { IUser } from "./interfaces/IUser";
 import { TUser } from "./types/TUser";
 
 export default class UserRepo implements IUser {
-  private readonly prisma: PrismaClient;
 
-  constructor(prisma: PrismaClient) {
-    this.prisma = prisma;
-  }
 
   public async deleteUser({
     email,
@@ -15,7 +11,7 @@ export default class UserRepo implements IUser {
     Omit<TUser, "id" | "password"> | Error
   > {
     try {
-      const user = await this.prisma.user.delete({
+      const user = await prisma.user.delete({
         where: {
           email,
         },
@@ -33,7 +29,7 @@ export default class UserRepo implements IUser {
     Omit<TUser, "id" | "password"> | Error
   > {
     try {
-      const user = await this.prisma.user.update({
+      const user = await prisma.user.update({
         where: {
           id,
         },
@@ -60,7 +56,7 @@ export default class UserRepo implements IUser {
     Omit<TUser, "id" | "password"> | Error
   > {
     try {
-      const user = await this.prisma.user.findUnique({
+      const user = await prisma.user.findUnique({
         where: {
           email,
         },
@@ -88,7 +84,7 @@ export default class UserRepo implements IUser {
     password,
   }: TUser): Promise<Omit<TUser, "id" | "password">> {
     try {
-      const result = await this.prisma.user.create({
+      const result = await prisma.user.create({
         data: {
           name,
           email,
