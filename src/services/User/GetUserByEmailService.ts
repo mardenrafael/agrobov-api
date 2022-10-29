@@ -1,7 +1,7 @@
 import { IUser } from "../../repos/User/interfaces/IUser";
 import { TUser } from "../../repos/User/types/TUser";
 
-export class GetUserByEmailService {
+export default class GetUserByEmailService {
   private readonly repo: IUser;
 
   constructor(repo: IUser) {
