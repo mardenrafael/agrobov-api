@@ -19,6 +19,9 @@ services:
   api:
     build: .
     container_name: agrobovapi
+    
+    expose:
+      - 3030
 
     ports:
       - 3030:3030
