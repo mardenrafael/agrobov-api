@@ -2,7 +2,7 @@ import { IOx } from "../../repos/Ox/interfaces/IOx";
 import { TOx } from "../../repos/Ox/types/TOx";
 import { OxService } from "./interface/OxService";
 
-export class GetOxByIdService implements OxService {
+export default class GetOxByIdService implements OxService {
   private readonly repo: IOx;
 
   constructor(repo: IOx) {

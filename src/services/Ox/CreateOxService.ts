@@ -3,7 +3,7 @@ import { TOx } from "../../repos/Ox/types/TOx";
 import { OxService } from "./interface/OxService";
 import { RequestCreateOx } from "./types/OxTypes";
 
-export class CreateOxService implements OxService {
+export default class CreateOxService implements OxService {
   private readonly repo: IOx;
 
   constructor(repo: IOx) {
