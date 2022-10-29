@@ -24,8 +24,6 @@ export class UpdateOxController implements IControllers {
       return;
     }
 
-    res.status(200).json({
-      result,
-    });
+    res.status(200).json(result);
   }
 }
