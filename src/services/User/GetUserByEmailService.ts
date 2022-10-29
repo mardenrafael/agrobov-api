@@ -8,9 +8,11 @@ export class GetUserByEmailService {
     this.repo = repo;
   }
 
-  public async execute(
-    email: string
-  ): Promise<Error | Omit<TUser, "id" | "password">> {
+  public async execute({
+    email,
+  }: Pick<TUser, "email">): Promise<
+    Error | Omit<TUser, "id" | "password">
+  > {
     try {
       const user = await this.repo.getUserByEmail({
         email,
