@@ -1,6 +1,5 @@
-import { User } from "@prisma/client";
 import { IUser } from "../../repos/User/interfaces/IUser";
-import { OmitUserRequest } from "./types/UserTypes";
+import { TUser } from "../../repos/User/types/TUser";
 
 export class GetUserByEmailService {
   private readonly repo: IUser;
@@ -11,7 +10,7 @@ export class GetUserByEmailService {
 
   public async execute(
     email: string
-  ): Promise<Error | OmitUserRequest<User>> {
+  ): Promise<Error | Omit<TUser, "id" | "password">> {
     try {
       const user = await this.repo.getUserByEmail({
         email,
