@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import UserRepo from "../../repos/User/UserRepo";
-import DeleteUserService from "../../services/User/DeleteUserService";
+import { DeleteUserService } from "../../services/User";
 
 export class DeleteUserController {
   public async handle(req: Request, res: Response): Promise<void> {

@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import UserRepo from "../../repos/User/UserRepo";
-import { GetUserByEmailService } from "../../services/User/GetUserByEmailService";
-import prisma from "../../utils/Prisma";
+import { GetUserByEmailService } from "../../services/User";
 import UserController from "./interface/UserController";
 
 export default class GetUserByEmailController implements UserController {
@@ -12,8 +11,8 @@ export default class GetUserByEmailController implements UserController {
       return;
     }
 
-    const service = new GetUserByEmailService(new UserRepo(prisma));
-    const result = await service.execute(email);
+    const service = new GetUserByEmailService(new UserRepo());
+    const result = await service.execute({ email });
 
     if (result instanceof Error) {
       res.status(400).json({
