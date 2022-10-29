@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { OxRepo } from "../../repos/Ox/OxRepo";
-import { UpdateOxServiceS } from "../../services/Ox/UpdateOxService";
+import { UpdateOxServiceS } from "../../services/Ox";
 import OxController from "./interface/OxController";
 
 export class UpdateOxController implements OxController {
