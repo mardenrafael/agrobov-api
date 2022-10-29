@@ -1,9 +1,8 @@
 import { User } from "@prisma/client";
 import { IUser } from "../../repos/User/interfaces/IUser";
-import { UserService } from "./interface/UserService";
 import { OmitUserRequest } from "./types/UserTypes";
 
-export class GetUserByEmailService implements UserService {
+export class GetUserByEmailService {
   private readonly repo: IUser;
 
   constructor(repo: IUser) {

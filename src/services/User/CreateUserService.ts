@@ -1,9 +1,8 @@
-import { UserService } from "./interface/UserService";
 import bcrypt from "bcrypt";
 import { IUser } from "../../repos/User/interfaces/IUser";
 import { TUser } from "../../repos/User/types/TUser";
 
-export default class CreateUserService implements UserService {
+export default class CreateUserService {
   private readonly repo: IUser;
 
   constructor(repo: IUser) {

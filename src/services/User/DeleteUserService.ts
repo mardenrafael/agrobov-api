@@ -1,8 +1,7 @@
 import { IUser } from "../../repos/User/interfaces/IUser";
 import { TUser } from "../../repos/User/types/TUser";
-import { UserService } from "./interface/UserService";
 
-export default class DeleteUserService implements UserService {
+export default class DeleteUserService {
   private readonly repo: IUser;
 
   constructor(repo: IUser) {
