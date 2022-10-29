@@ -1,9 +1,8 @@
 import { IOx } from "../../repos/Ox/interfaces/IOx";
 import { TOx } from "../../repos/Ox/types/TOx";
-import { OxService } from "./interface/OxService";
 import { RequestCreateOx } from "./types/OxTypes";
 
-export default class CreateOxService implements OxService {
+export default class CreateOxService {
   private readonly repo: IOx;
 
   constructor(repo: IOx) {
