@@ -17,8 +17,6 @@ export class DeleteUserController implements IControllers {
       return;
     }
 
-    res.status(200).json({
-      result: result,
-    });
+    res.status(200).json(result);
   }
 }
