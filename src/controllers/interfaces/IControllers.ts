@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 
-export default interface UserController {
+export interface IControllers {
   handle(req: Request, res: Response): Promise<void>;
 }
-

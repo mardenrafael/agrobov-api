@@ -1,9 +1,9 @@
 import { CreateOxService } from "./../../services/Ox";
 import { Request, Response } from "express";
-import OxController from "./interface/OxController";
 import { OxRepo } from "../../repos/Ox/OxRepo";
+import { IControllers } from "../interfaces/IControllers";
 
-export default class CreateOxController implements OxController {
+export default class CreateOxController implements IControllers {
   public async handle(req: Request, res: Response): Promise<void> {
     const ownerId = req.params.id;
     const { earring, born_date, genre, marked } = req.body;

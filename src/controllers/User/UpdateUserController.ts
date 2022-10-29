@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import UserController from "./interface/UserController";
 import UserRepo from "../../repos/User/UserRepo";
 import { UpdateUserService } from "../../services/User";
+import { IControllers } from "../interfaces/IControllers";
 
-export default class UpdateUserController implements UserController {
+export default class UpdateUserController implements IControllers {
   public async handle(req: Request, res: Response): Promise<void> {
     const { name, id } = req.body;
     const service = new UpdateUserService(new UserRepo());

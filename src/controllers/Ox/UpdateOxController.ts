@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { OxRepo } from "../../repos/Ox/OxRepo";
 import { UpdateOxServiceS } from "../../services/Ox";
-import OxController from "./interface/OxController";
+import { IControllers } from "../interfaces/IControllers";
 
-export class UpdateOxController implements OxController {
+export class UpdateOxController implements IControllers {
   public async handle(req: Request, res: Response): Promise<void> {
     const service = new UpdateOxServiceS(new OxRepo());
     const { id, ownerId, earring, marked, genre, born_date } = req.body;

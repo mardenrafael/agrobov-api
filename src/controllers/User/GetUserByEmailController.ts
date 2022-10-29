@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import UserRepo from "../../repos/User/UserRepo";
 import { GetUserByEmailService } from "../../services/User";
-import UserController from "./interface/UserController";
+import { IControllers } from "../interfaces/IControllers";
 
-export default class GetUserByEmailController implements UserController {
+export default class GetUserByEmailController implements IControllers {
   public async handle(req: Request, res: Response): Promise<void> {
     const email = req.query.email;
 
