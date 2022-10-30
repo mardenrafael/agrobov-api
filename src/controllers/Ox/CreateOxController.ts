@@ -21,7 +21,7 @@ export default class CreateOxController implements IControllers {
 
     if (result instanceof Error) {
       res.status(400).json({
-        error: result.message,
+        error: result,
       });
       return;
     }
