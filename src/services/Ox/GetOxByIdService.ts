@@ -9,12 +9,11 @@ export default class GetOxByIdService {
   }
 
   public async execute(id: number): Promise<Omit<TOx, "id"> | Error> {
-    const ox = await this.repo.getOxById({ id });
-
-    if (ox instanceof Error) {
-      return new Error("Ox not found!");
+    try {
+      const ox = await this.repo.getOxById({ id });
+      return ox;
+    } catch (error) {
+      throw error;
     }
-
-    return ox;
   }
 }
