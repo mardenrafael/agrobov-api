@@ -16,7 +16,7 @@ export default class DeleteOxService {
 
       return ox;
     } catch (error) {
-      return new Error("Error on delete Ox");
+      throw error;
     }
   }
 }
