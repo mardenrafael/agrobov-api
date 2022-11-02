@@ -7,17 +7,11 @@ export interface IOx {
     genre,
     marked,
     ownerId,
-  }: Omit<TOx, "id">): Promise<Omit<TOx, "id"> | Error>;
-  getOxById({ id }: Pick<TOx, "id">): Promise<Omit<TOx, "id"> | Error>;
-  DeleteOx({ id }: Pick<TOx, "id">): Promise<Omit<TOx, "id"> | Error>;
+  }: Omit<TOx, "id" | "active">): Promise<TOx | Error>;
+  getOxById({ id }: Pick<TOx, "id">): Promise<TOx | Error>;
+  DeleteOx({ id }: Pick<TOx, "id">): Promise<TOx | Error>;
   updateOx(
     { id }: Pick<TOx, "id">,
-    {
-      ownerId,
-      marked,
-      genre,
-      earring,
-      born_date,
-    }: Partial<Omit<TOx, "id">>
-  ): Promise<Omit<TOx, "id"> | Error>;
+    { ownerId, marked, genre, earring, born_date }: Partial<TOx>
+  ): Promise<TOx | Error>;
 }
