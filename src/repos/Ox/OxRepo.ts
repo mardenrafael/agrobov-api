@@ -9,7 +9,7 @@ export class OxRepo implements IOx {
     genre,
     marked,
     ownerId,
-  }: Omit<TOx, "id">): Promise<Omit<TOx, "id"> | Error> {
+  }: Omit<TOx, "id" | "active">): Promise<TOx | Error> {
     try {
       const Ox = await prisma.ox.create({
         data: {
@@ -20,11 +20,20 @@ export class OxRepo implements IOx {
           ownerId,
         },
         select: {
+          id: true,
+          active: true,
           marked: true,
           born_date: true,
           earring: true,
           genre: true,
-          owner: true,
+          owner: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              brand: true,
+            },
+          },
           ownerId: true,
         },
       });
@@ -34,17 +43,24 @@ export class OxRepo implements IOx {
       throw error;
     }
   }
-  public async getOxById({
-    id,
-  }: Pick<TOx, "id">): Promise<Omit<TOx, "id"> | Error> {
+  public async getOxById({ id }: Pick<TOx, "id">): Promise<TOx | Error> {
     try {
       const Ox = await prisma.ox.findUnique({
         where: {
           id,
         },
         select: {
+          id: true,
           ownerId: true,
-          owner: true,
+          active: true,
+          owner: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              brand: true,
+            },
+          },
           born_date: true,
           earring: true,
           marked: true,
@@ -60,17 +76,25 @@ export class OxRepo implements IOx {
       throw error;
     }
   }
-  public async DeleteOx({
-    id,
-  }: Pick<TOx, "id">): Promise<Omit<TOx, "id"> | Error> {
+  public async DeleteOx({ id }: Pick<TOx, "id">): Promise<TOx | Error> {
     try {
       const ox = await prisma.ox.delete({
         where: {
           id,
         },
         select: {
+          id: true,
+          active: true,
           marked: true,
           ownerId: true,
+          owner: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              brand: true,
+            },
+          },
           genre: true,
           born_date: true,
           earring: true,
@@ -91,7 +115,7 @@ export class OxRepo implements IOx {
       earring,
       born_date,
     }: Partial<Omit<TOx, "id">>
-  ): Promise<Omit<TOx, "id"> | Error> {
+  ): Promise<TOx | Error> {
     try {
       const ox = await prisma.ox.update({
         where: {
