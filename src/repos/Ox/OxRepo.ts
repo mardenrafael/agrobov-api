@@ -28,6 +28,11 @@ export class OxRepo implements IOx {
           genre: true,
           owner: {
             select: {
+              created_at: false,
+              deleted_at: false,
+              active: false,
+              updated_at: false,
+              password: false,
               id: true,
               name: true,
               email: true,
