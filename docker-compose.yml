@@ -19,10 +19,9 @@ services:
   api:
     build: .
     container_name: agrobovapi
-    
+    restart: always
     expose:
       - 3030
-
     ports:
       - 3030:3030
     volumes:
@@ -30,9 +29,6 @@ services:
       # - /usr/app/node_modules
     env_file:
       - .env
-    # environment:
-    #   - DATABASE_URL=postgresql://postgres:r0Ot@369@db:5432/agrobovdb?schema=public
-    #   - NODE_ENV=production
     links:
       - db
 
