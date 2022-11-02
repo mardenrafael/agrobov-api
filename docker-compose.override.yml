@@ -1,0 +1,10 @@
+version: '3.1'
+
+
+services:
+  db:
+    ports:
+      - 14038:5432
+
+  api: 
+    command:  pm2-runtime start ./dist/index.js

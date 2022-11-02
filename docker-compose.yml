@@ -32,7 +32,7 @@ services:
     links:
       - db
 
-    # command: "pm2-runtime start --watch ./dist/index.js" //prod
+    
     command: "npm run start:dev"
 
 volumes:
