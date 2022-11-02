@@ -8,7 +8,7 @@ export default class GetOxByIdService {
     this.repo = repo;
   }
 
-  public async execute(id: number): Promise<Omit<TOx, "id"> | Error> {
+  public async execute({ id }: Pick<TOx, "id">): Promise<TOx | Error> {
     const ox = await this.repo.getOxById({ id });
 
     if (ox instanceof Error) {
