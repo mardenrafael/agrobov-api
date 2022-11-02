@@ -8,9 +8,7 @@ export default class DeleteOxService {
     this.repo = repo;
   }
 
-  public async execute({
-    id,
-  }: Pick<TOx, "id">): Promise<Omit<TOx, "id"> | Error> {
+  public async execute({ id }: Pick<TOx, "id">): Promise<TOx | Error> {
     try {
       const ox = await this.repo.DeleteOx({ id });
 
