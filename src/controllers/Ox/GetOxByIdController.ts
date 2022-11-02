@@ -5,9 +5,9 @@ import { IControllers } from "../interfaces/IControllers";
 
 export default class GetOxByIdController implements IControllers {
   public async handle(req: Request, res: Response): Promise<void> {
-    const oxId = req.params.id;
+    const id = Number(req.params.id);
     const service = new GetOxByIdService(new OxRepo());
-    const result = await service.execute(Number(oxId));
+    const result = await service.execute({ id });
 
     if (result instanceof Error) {
       res.status(400).json({

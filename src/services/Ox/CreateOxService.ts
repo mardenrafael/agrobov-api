@@ -14,7 +14,7 @@ export default class CreateOxService {
     born_date,
     genre,
     marked,
-  }: Omit<TOx, "active">): Promise<Error | TOx> {
+  }: Omit<TOx, "id" | "active">): Promise<Error | TOx> {
     try {
       const ox = await this.repo.createOx({
         earring,
