@@ -1,0 +1,8 @@
+{
+    "recommendation": [
+        "esbenp.prettier-vscode",
+        "johnpapa.vscode-peacock",
+        "dbaeumer.vscode-eslint",
+        "Prisma.prisma"
+    ]
+}
