@@ -26,10 +26,10 @@ services:
       - 3030:3030
     volumes:
       - .:/usr/app
-      # - /usr/app/node_modules
+      - /usr/app/node_modules
     env_file:
       - .env
-    links:
+    depends_on:
       - db
 
     
