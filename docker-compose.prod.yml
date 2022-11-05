@@ -9,7 +9,10 @@ services:
       - 14038:5432
 
   api: 
+    volumes:
+      - app:/usr/app:ro
     command:  pm2-runtime start ./dist/index.js
 
 volumes:
   dbdata:
+  app:
