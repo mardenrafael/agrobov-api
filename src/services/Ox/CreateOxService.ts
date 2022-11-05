@@ -1,7 +1,6 @@
-import { Prisma } from "@prisma/client";
 import { IOx } from "../../repos/Ox/interfaces/IOx";
 import { TOx } from "../../repos/Ox/types/TOx";
-import ErrorHandler from "../../utils/ErrorHandler";
+import PrismaErrorHandler from "../../utils/ErrorHandler";
 import { RequestCreateOx } from "./types/OxTypes";
 
 export default class CreateOxService {
@@ -25,12 +24,8 @@ export default class CreateOxService {
       });
 
       return ox;
-    } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError) {
-        return new ErrorHandler(error.code, error.meta);
-      }
-
-      return new Error("Unknow Error");
+    } catch (error: any) {
+      return new PrismaErrorHandler(error);
     }
   }
 }
