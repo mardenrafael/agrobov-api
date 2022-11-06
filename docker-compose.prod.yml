@@ -11,7 +11,7 @@ services:
   api: 
     volumes:
       - app:/usr/app:ro
-    command:  pm2-runtime start ./dist/index.js
+    command:  npm run start
 
 volumes:
   dbdata:

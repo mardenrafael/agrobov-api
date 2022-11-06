@@ -31,9 +31,11 @@ services:
       - .env
     depends_on:
       - db
-
     
-    command: "npm run start:dev"
+    links:
+      - db
+
+    command: npm run start:dev
 
 volumes:
   pgdata:
