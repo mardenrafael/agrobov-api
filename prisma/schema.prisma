@@ -17,7 +17,7 @@ model User {
   name       String
   email      String    @unique
   password   String
-  brand      String    @unique
+  brand      String?
   Ox         Ox[]
   active     Boolean   @default(true)
   deleted_at DateTime?
