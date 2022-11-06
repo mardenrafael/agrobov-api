@@ -3,17 +3,20 @@ import { IUser } from "./interfaces/IUser";
 import { TUser } from "./types/TUser";
 
 export default class UserRepo implements IUser {
-
-
   public async deleteUser({
     email,
-  }: Pick<TUser, "email">): Promise<
-    Omit<TUser, "id" | "password"> | Error
-  > {
+  }: Pick<TUser, "email">): Promise<Omit<TUser, "password"> | Error> {
     try {
       const user = await prisma.user.delete({
         where: {
           email,
+        },
+        select: {
+          name: true,
+          brand: true,
+          email: true,
+          id: true,
+          Ox: true,
         },
       });
 
@@ -26,7 +29,7 @@ export default class UserRepo implements IUser {
     name,
     id,
   }: Partial<Pick<TUser, "id" | "name">>): Promise<
-    Omit<TUser, "id" | "password"> | Error
+    Omit<TUser, "password"> | Error
   > {
     try {
       const user = await prisma.user.update({
@@ -37,6 +40,7 @@ export default class UserRepo implements IUser {
           name,
         },
         select: {
+          id: true,
           Ox: true,
           brand: true,
           email: true,
@@ -52,9 +56,7 @@ export default class UserRepo implements IUser {
 
   public async getUserByEmail({
     email,
-  }: Pick<TUser, "email">): Promise<
-    Omit<TUser, "password"> | Error
-  > {
+  }: Pick<TUser, "email">): Promise<Omit<TUser, "password"> | Error> {
     try {
       const user = await prisma.user.findUnique({
         where: {
@@ -82,7 +84,7 @@ export default class UserRepo implements IUser {
     name,
     email,
     password,
-  }: TUser): Promise<Omit<TUser, "id" | "password">> {
+  }: TUser): Promise<Omit<TUser, "password">> {
     try {
       const result = await prisma.user.create({
         data: {
@@ -91,6 +93,7 @@ export default class UserRepo implements IUser {
           password,
         },
         select: {
+          id: true,
           Ox: true,
           name: true,
           email: true,
