@@ -1,5 +1,6 @@
 import { IOx } from "../../repos/Ox/interfaces/IOx";
 import { TOx } from "../../repos/Ox/types/TOx";
+import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 
 export default class UpdateOxServiceS {
   private readonly repo: IOx;
@@ -29,8 +30,8 @@ export default class UpdateOxServiceS {
       );
 
       return ox;
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      return new PrismaErrorHandler(error);
     }
   }
 }
