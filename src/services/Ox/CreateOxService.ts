@@ -1,6 +1,6 @@
 import { IOx } from "../../repos/Ox/interfaces/IOx";
 import { TOx } from "../../repos/Ox/types/TOx";
-import PrismaErrorHandler from "../../utils/ErrorHandler";
+import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 import { RequestCreateOx } from "./types/OxTypes";
 
 export default class CreateOxService {
