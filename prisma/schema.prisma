@@ -11,6 +11,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+//TODO Implement specific datatype to improve security and performance
 model User {
   id         Int       @id @default(autoincrement())
   name       String
