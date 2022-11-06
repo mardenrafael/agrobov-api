@@ -16,7 +16,7 @@ export default class UpdateOxServiceS {
     marked,
     genre,
     born_date,
-  }: TOx): Promise<Omit<TOx, "id"> | Error> {
+  }: Omit<TOx, "active">): Promise<TOx | Error> {
     try {
       const ox = await this.repo.updateOx(
         { id },

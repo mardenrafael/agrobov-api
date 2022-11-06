@@ -1,4 +1,6 @@
 node_modules
 docs
 .vscode
-dist/
+dist
+Dockerfile
+README.md

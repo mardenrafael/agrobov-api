@@ -1,7 +1,6 @@
 import { IOx } from "../../repos/Ox/interfaces/IOx";
 import { TOx } from "../../repos/Ox/types/TOx";
 import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
-import { RequestCreateOx } from "./types/OxTypes";
 
 export default class CreateOxService {
   private readonly repo: IOx;
@@ -10,10 +9,13 @@ export default class CreateOxService {
     this.repo = repo;
   }
 
-  public async execute(
-    { earring, born_date, genre, marked }: RequestCreateOx,
-    ownerId: number
-  ): Promise<Error | Omit<TOx, "id">> {
+  public async execute({
+    ownerId,
+    earring,
+    born_date,
+    genre,
+    marked,
+  }: Omit<TOx, "id" | "active">): Promise<Error | TOx> {
     try {
       const ox = await this.repo.createOx({
         earring,

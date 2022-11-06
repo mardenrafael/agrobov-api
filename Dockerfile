@@ -6,11 +6,13 @@ COPY package*.json ./
 
 RUN apk --no-cache add --virtual .builds-deps build-base python3
 
-RUN npm install && npm rebuild bcrypt --build-from-source && npm cache clean --force
+RUN npm install pm2 -g
+
+RUN npm install && npm rebuild bcrypt --build-from-source
 
 COPY . .
 
-RUN npm run prisma:generate
+RUN npm run prisma:generate && npm run build
 
 EXPOSE 3030
 
