@@ -53,7 +53,7 @@ export default class UserRepo implements IUser {
   public async getUserByEmail({
     email,
   }: Pick<TUser, "email">): Promise<
-    Omit<TUser, "id" | "password"> | Error
+    Omit<TUser, "password"> | Error
   > {
     try {
       const user = await prisma.user.findUnique({
@@ -61,6 +61,7 @@ export default class UserRepo implements IUser {
           email,
         },
         select: {
+          id: true,
           email: true,
           name: true,
           brand: true,
@@ -80,7 +81,6 @@ export default class UserRepo implements IUser {
   public async createUser({
     name,
     email,
-    brand,
     password,
   }: TUser): Promise<Omit<TUser, "id" | "password">> {
     try {
@@ -88,7 +88,6 @@ export default class UserRepo implements IUser {
         data: {
           name,
           email,
-          brand,
           password,
         },
         select: {
