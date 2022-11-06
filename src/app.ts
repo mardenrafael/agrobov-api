@@ -24,7 +24,7 @@ export default class App {
   private config(): void {
     this.app.use(json());
     this.app.use(cors());
-    this.app.use(limiter)
+    this.app.use(limiter);
   }
 
   /**

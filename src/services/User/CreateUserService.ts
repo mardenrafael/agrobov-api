@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import { IUser } from "../../repos/User/interfaces/IUser";
 import { TUser } from "../../repos/User/types/TUser";
+import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 
 export default class CreateUserService {
   private readonly repo: IUser;
@@ -25,8 +26,8 @@ export default class CreateUserService {
       });
 
       return user;
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      return new PrismaErrorHandler(error);
     }
   }
 }

@@ -1,5 +1,6 @@
 import { IUser } from "../../repos/User/interfaces/IUser";
 import { TUser } from "../../repos/User/types/TUser";
+import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 
 export default class UpdateUserService {
   private readonly repo: IUser;
@@ -21,8 +22,8 @@ export default class UpdateUserService {
       });
 
       return user;
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      return new PrismaErrorHandler(error);
     }
   }
 }

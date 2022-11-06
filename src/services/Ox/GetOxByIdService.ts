@@ -1,5 +1,6 @@
 import { IOx } from "../../repos/Ox/interfaces/IOx";
 import { TOx } from "../../repos/Ox/types/TOx";
+import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 
 export default class GetOxByIdService {
   private readonly repo: IOx;
@@ -9,12 +10,11 @@ export default class GetOxByIdService {
   }
 
   public async execute({ id }: Pick<TOx, "id">): Promise<TOx | Error> {
-    const ox = await this.repo.getOxById({ id });
-
-    if (ox instanceof Error) {
-      return new Error("Ox not found!");
+    try {
+      const ox = await this.repo.getOxById({ id });
+      return ox;
+    } catch (error: any) {
+      return new PrismaErrorHandler(error);
     }
-
-    return ox;
   }
 }
