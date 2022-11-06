@@ -3,6 +3,7 @@
         "esbenp.prettier-vscode",
         "johnpapa.vscode-peacock",
         "dbaeumer.vscode-eslint",
-        "Prisma.prisma"
+        "Prisma.prisma",
+        "Gruntfuggly.todo-tree"
     ]
 }
