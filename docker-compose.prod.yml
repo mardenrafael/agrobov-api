@@ -11,6 +11,8 @@ services:
   api: 
     volumes:
       - app:/usr/app:ro
+    ports:
+      - 3030:3030
     command:  npm run start
 
 volumes:
