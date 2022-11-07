@@ -1,6 +1,5 @@
 import { IUser } from "../../repos/User/interfaces/IUser";
 import { TUser } from "../../repos/User/types/TUser";
-import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 
 export default class GetUserByEmailService {
   private readonly repo: IUser;
@@ -14,14 +13,10 @@ export default class GetUserByEmailService {
   }: Pick<TUser, "email">): Promise<
     Error | Omit<TUser, "id" | "password">
   > {
-    try {
-      const user = await this.repo.getUserByEmail({
-        email,
-      });
+    const user = await this.repo.getUserByEmail({
+      email,
+    });
 
-      return user;
-    } catch (error: any) {
-      return new PrismaErrorHandler(error);
-    }
+    return user;
   }
 }

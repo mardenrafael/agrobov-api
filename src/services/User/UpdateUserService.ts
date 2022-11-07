@@ -1,6 +1,5 @@
 import { IUser } from "../../repos/User/interfaces/IUser";
 import { TUser } from "../../repos/User/types/TUser";
-import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 
 export default class UpdateUserService {
   private readonly repo: IUser;
@@ -15,15 +14,11 @@ export default class UpdateUserService {
   }: Pick<TUser, "id" | "name">): Promise<
     Omit<TUser, "id" | "password"> | Error
   > {
-    try {
-      const user = await this.repo.updateUser({
-        name,
-        id,
-      });
+    const user = await this.repo.updateUser({
+      name,
+      id,
+    });
 
-      return user;
-    } catch (error: any) {
-      return new PrismaErrorHandler(error);
-    }
+    return user;
   }
 }
