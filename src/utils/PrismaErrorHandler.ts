@@ -49,7 +49,7 @@ export default class PrismaErrorHandler {
         this.message = `Unique constraint failed on the ${this.meta?.target[0]}`;
         break;
       case PrismaErrorCodes.P2003:
-        this.message = `Foreign key constraint failed on the field ${this.meta?.target[0]}`;
+        this.message = `Foreign key constraint failed`;
         break;
       case PrismaErrorCodes.P2004:
         this.message = "A constraint failed on the database";
