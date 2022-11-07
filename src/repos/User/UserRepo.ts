@@ -1,15 +1,12 @@
 import prisma from "../../utils/Prisma";
+import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 import { IUser } from "./interfaces/IUser";
 import { TUser } from "./types/TUser";
 
 export default class UserRepo implements IUser {
-
-
   public async deleteUser({
     email,
-  }: Pick<TUser, "email">): Promise<
-    Omit<TUser, "id" | "password"> | Error
-  > {
+  }: Pick<TUser, "email">): Promise<Omit<TUser, "password"> | Error> {
     try {
       const user = await prisma.user.delete({
         where: {
@@ -18,15 +15,15 @@ export default class UserRepo implements IUser {
       });
 
       return user;
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      return new PrismaErrorHandler(error);
     }
   }
   public async updateUser({
     name,
     id,
   }: Partial<Pick<TUser, "id" | "name">>): Promise<
-    Omit<TUser, "id" | "password"> | Error
+    Omit<TUser, "password"> | Error
   > {
     try {
       const user = await prisma.user.update({
@@ -37,6 +34,7 @@ export default class UserRepo implements IUser {
           name,
         },
         select: {
+          id: true,
           Ox: true,
           brand: true,
           email: true,
@@ -45,22 +43,21 @@ export default class UserRepo implements IUser {
       });
 
       return user;
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      return new PrismaErrorHandler(error);
     }
   }
 
   public async getUserByEmail({
     email,
-  }: Pick<TUser, "email">): Promise<
-    Omit<TUser, "id" | "password"> | Error
-  > {
+  }: Pick<TUser, "email">): Promise<Omit<TUser, "password"> | Error> {
     try {
       const user = await prisma.user.findUnique({
         where: {
           email,
         },
         select: {
+          id: true,
           email: true,
           name: true,
           brand: true,
@@ -72,26 +69,25 @@ export default class UserRepo implements IUser {
         throw new Error("User not found");
       }
       return user;
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      return new PrismaErrorHandler(error);
     }
   }
 
   public async createUser({
     name,
     email,
-    brand,
     password,
-  }: TUser): Promise<Omit<TUser, "id" | "password">> {
+  }: TUser): Promise<Omit<TUser, "password"> | Error> {
     try {
       const result = await prisma.user.create({
         data: {
           name,
           email,
-          brand,
           password,
         },
         select: {
+          id: true,
           Ox: true,
           name: true,
           email: true,
@@ -100,8 +96,8 @@ export default class UserRepo implements IUser {
       });
 
       return result;
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      return new PrismaErrorHandler(error);
     }
   }
 }
