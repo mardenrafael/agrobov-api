@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import UserRepo from "../../repos/User/UserRepo";
 import { GetUserByEmailService } from "../../services/User";
+import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 import { IControllers } from "../interfaces/IControllers";
 
 export default class GetUserByEmailController implements IControllers {
@@ -14,7 +15,7 @@ export default class GetUserByEmailController implements IControllers {
     const service = new GetUserByEmailService(new UserRepo());
     const result = await service.execute({ email });
 
-    if (result instanceof Error) {
+    if (result instanceof PrismaErrorHandler) {
       res.status(400).json({
         error: result.message,
       });

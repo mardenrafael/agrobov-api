@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { OxRepo } from "../../repos/Ox/OxRepo";
 import { GetOxByIdService } from "../../services/Ox";
+import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 import { IControllers } from "../interfaces/IControllers";
 
 export default class GetOxByIdController implements IControllers {
@@ -9,7 +10,7 @@ export default class GetOxByIdController implements IControllers {
     const service = new GetOxByIdService(new OxRepo());
     const result = await service.execute({ id });
 
-    if (result instanceof Error) {
+    if (result instanceof PrismaErrorHandler) {
       res.status(400).json({
         error: result.message,
       });

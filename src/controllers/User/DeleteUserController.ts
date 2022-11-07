@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import UserRepo from "../../repos/User/UserRepo";
 import { DeleteUserService } from "../../services/User";
+import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 import { IControllers } from "../interfaces/IControllers";
 
 export class DeleteUserController implements IControllers {
@@ -10,7 +11,7 @@ export class DeleteUserController implements IControllers {
 
     const result = await service.execute({ email });
 
-    if (result instanceof Error) {
+    if (result instanceof PrismaErrorHandler) {
       res.status(400).json({
         error: result.message,
       });

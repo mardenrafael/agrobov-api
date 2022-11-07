@@ -2,9 +2,10 @@ import { Request, Response } from "express";
 import { LoginService } from "../../services/auth/LoginService";
 import prisma from "../../utils/Prisma";
 import corsConfig from "../../utils/Cors";
+import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
+
 export class LoginController {
   async handle(req: Request, res: Response): Promise<void> {
-    
     res.set(corsConfig);
 
     const { email, password } = req.body;
@@ -14,7 +15,7 @@ export class LoginController {
       password,
     });
 
-    if (result instanceof Error) {
+    if (result instanceof PrismaErrorHandler) {
       res.status(401).json({
         error: result.message,
       });
@@ -27,4 +28,3 @@ export class LoginController {
     });
   }
 }
-
