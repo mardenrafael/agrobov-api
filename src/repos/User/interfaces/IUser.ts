@@ -10,7 +10,7 @@ export interface IUser {
     name,
     email,
     password,
-  }: Omit<TUser, "id">): Promise<Omit<TUser, "id" | "password"> | Error>;
+  }: Omit<TUser, "id">): Promise<Omit<TUser, "password"> | Error>;
   updateUser({
     name,
     id,

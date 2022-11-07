@@ -5,13 +5,12 @@ import { IControllers } from "../interfaces/IControllers";
 
 export default class CreateUserController implements IControllers {
   public async handle(req: Request, res: Response): Promise<void> {
-    const { name, email, password, brand } = req.body;
+    const { name, email, password } = req.body;
     const service = new CreateUserService(new UserRepo());
     const result = await service.execute({
       name,
       email,
       password,
-      brand,
     });
 
     if (result instanceof Error) {
