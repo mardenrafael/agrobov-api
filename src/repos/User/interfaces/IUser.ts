@@ -8,7 +8,6 @@ export interface IUser {
   >;
   createUser({
     name,
-    brand,
     email,
     password,
   }: Omit<TUser, "id">): Promise<Omit<TUser, "id" | "password"> | Error>;
