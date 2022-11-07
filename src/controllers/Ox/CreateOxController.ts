@@ -20,7 +20,7 @@ export default class CreateOxController implements IControllers {
 
     if (result instanceof PrismaErrorHandler) {
       res.status(400).json({
-        error: result,
+        error: result.message,
       });
       return;
     }
