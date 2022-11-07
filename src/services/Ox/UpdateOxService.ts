@@ -1,6 +1,5 @@
 import { IOx } from "../../repos/Ox/interfaces/IOx";
 import { TOx } from "../../repos/Ox/types/TOx";
-import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 
 export default class UpdateOxServiceS {
   private readonly repo: IOx;
@@ -17,21 +16,17 @@ export default class UpdateOxServiceS {
     genre,
     born_date,
   }: Omit<TOx, "active">): Promise<TOx | Error> {
-    try {
-      const ox = await this.repo.updateOx(
-        { id },
-        {
-          ownerId,
-          marked,
-          genre,
-          earring,
-          born_date,
-        }
-      );
+    const ox = await this.repo.updateOx(
+      { id },
+      {
+        ownerId,
+        marked,
+        genre,
+        earring,
+        born_date,
+      }
+    );
 
-      return ox;
-    } catch (error: any) {
-      return new PrismaErrorHandler(error);
-    }
+    return ox;
   }
 }
