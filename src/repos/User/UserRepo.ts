@@ -85,6 +85,7 @@ export default class UserRepo implements IUser {
           name,
           email,
           password,
+          brand: "a",
         },
         select: {
           id: true,
