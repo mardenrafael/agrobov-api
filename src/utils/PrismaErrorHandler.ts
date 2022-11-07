@@ -15,17 +15,29 @@ export enum PrismaErrorCodes {
 }
 
 export default class PrismaErrorHandler {
-  name: string;
-  message!: string;
+  private code: string;
+  private meta: any;
+  public name: string;
+  public message: string;
+  public stack?: string | undefined;
 
-  constructor({ name, code }: Prisma.PrismaClientKnownRequestError) {
+  constructor({
+    code,
+    meta,
+    name,
+    message,
+    stack,
+  }: Prisma.PrismaClientKnownRequestError) {
+    this.message = message;
     this.name = name;
-
-    this.setErrorMessageBasedOnCode(code);
+    this.code = code;
+    this.meta = meta;
+    this.stack = stack;
+    this.setErrorMessageBasedOnCode();
   }
 
-  public setErrorMessageBasedOnCode(code: string): void {
-    switch (code) {
+  private setErrorMessageBasedOnCode(): void {
+    switch (this.code) {
       case PrismaErrorCodes.P2000:
         this.message =
           "The provided value for the column is too long for the column's type";
@@ -34,10 +46,10 @@ export default class PrismaErrorHandler {
         this.message = "The record searched for in the where condition";
         break;
       case PrismaErrorCodes.P2002:
-        this.message = "Unique constraint failed on the";
+        this.message = `Unique constraint failed on the ${this.meta?.target[0]}`;
         break;
       case PrismaErrorCodes.P2003:
-        this.message = "Foreign key constraint failed on the field";
+        this.message = `Foreign key constraint failed on the field ${this.meta?.target[0]}`;
         break;
       case PrismaErrorCodes.P2004:
         this.message = "A constraint failed on the database";
@@ -62,7 +74,6 @@ export default class PrismaErrorHandler {
       case PrismaErrorCodes.P2010:
         this.message = "Raw query failed.";
         break;
-
       default:
         this.message = "Unknow prisma error";
         break;
