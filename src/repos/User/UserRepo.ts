@@ -85,7 +85,7 @@ export default class UserRepo implements IUser {
     name,
     email,
     password,
-  }: TUser): Promise<Omit<TUser, "password">> {
+  }: Omit<TUser, "id">): Promise<Omit<TUser, "password"> | Error> {
     try {
       const result = await prisma.user.create({
         data: {
