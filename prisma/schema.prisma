@@ -14,29 +14,29 @@ datasource db {
 //TODO Implement specific datatype to improve security and performance
 model User {
   id         Int       @id @default(autoincrement())
-  name       String
-  email      String    @unique
-  password   String
-  brand      String    @unique
+  name       String    @db.Char(70)
+  email      String    @unique @db.Char(70)
+  password   String    @db.Char(150)
+  brand      String    @unique @db.Char(8)
   Ox         Ox[]
-  active     Boolean   @default(true)
-  deleted_at DateTime?
-  created_at DateTime  @default(now())
-  updated_at DateTime  @default(now())
+  active     Boolean   @default(true) @db.Boolean()
+  deleted_at DateTime? @db.Timestamp()
+  created_at DateTime  @default(now()) @db.Timestamp()
+  updated_at DateTime  @default(now()) @db.Timestamp()
 }
 
 model Ox {
   id         Int       @id @default(autoincrement())
-  marked     Boolean   @default(false)
-  earring    String?
-  born_date  DateTime
+  marked     Boolean   @default(false) @db.Boolean
+  earring    String?   @db.Char(7)
+  born_date  DateTime  @db.Date()
   owner      User      @relation(fields: [ownerId], references: [id])
-  ownerId    Int
+  ownerId    Int       @db.Integer()
   genre      Oxgenre
-  active     Boolean   @default(true)
-  created_at DateTime  @default(now())
-  updated_at DateTime  @default(now())
-  deleted_at DateTime?
+  active     Boolean   @default(true) @db.Boolean()
+  created_at DateTime  @default(now()) @db.Timestamp()
+  updated_at DateTime  @default(now()) @db.Timestamp()
+  deleted_at DateTime? @db.Timestamp()
 }
 
 enum Oxgenre {
