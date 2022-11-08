@@ -2,6 +2,7 @@ import { CreateOxService } from "./../../services/Ox";
 import { Request, Response } from "express";
 import { OxRepo } from "../../repos/Ox/OxRepo";
 import { IControllers } from "../interfaces/IControllers";
+import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 
 export default class CreateOxController implements IControllers {
   public async handle(req: Request, res: Response): Promise<void> {
@@ -17,9 +18,9 @@ export default class CreateOxController implements IControllers {
       marked,
     });
 
-    if (result instanceof Error) {
+    if (result instanceof PrismaErrorHandler) {
       res.status(400).json({
-        error: result,
+        error: result.message,
       });
       return;
     }

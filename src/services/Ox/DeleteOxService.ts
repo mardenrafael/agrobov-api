@@ -1,6 +1,5 @@
 import { IOx } from "../../repos/Ox/interfaces/IOx";
 import { TOx } from "../../repos/Ox/types/TOx";
-import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 
 export default class DeleteOxService {
   private readonly repo: IOx;
@@ -10,12 +9,8 @@ export default class DeleteOxService {
   }
 
   public async execute({ id }: Pick<TOx, "id">): Promise<TOx | Error> {
-    try {
-      const ox = await this.repo.DeleteOx({ id });
+    const ox = await this.repo.DeleteOx({ id });
 
-      return ox;
-    } catch (error: any) {
-      return new PrismaErrorHandler(error);
-    }
+    return ox;
   }
 }

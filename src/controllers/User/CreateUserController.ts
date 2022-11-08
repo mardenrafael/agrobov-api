@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import UserRepo from "../../repos/User/UserRepo";
 import { CreateUserService } from "../../services/User";
+import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 import { IControllers } from "../interfaces/IControllers";
 
 export default class CreateUserController implements IControllers {
@@ -13,7 +14,7 @@ export default class CreateUserController implements IControllers {
       password,
     });
 
-    if (result instanceof Error) {
+    if (result instanceof PrismaErrorHandler) {
       res.status(400).json({
         error: result.message,
       });

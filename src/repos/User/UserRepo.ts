@@ -1,4 +1,5 @@
 import prisma from "../../utils/Prisma";
+import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 import { IUser } from "./interfaces/IUser";
 import { TUser } from "./types/TUser";
 
@@ -21,8 +22,8 @@ export default class UserRepo implements IUser {
       });
 
       return user;
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      return new PrismaErrorHandler(error);
     }
   }
   public async updateUser({
@@ -49,8 +50,8 @@ export default class UserRepo implements IUser {
       });
 
       return user;
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      return new PrismaErrorHandler(error);
     }
   }
 
@@ -75,8 +76,8 @@ export default class UserRepo implements IUser {
         throw new Error("User not found");
       }
       return user;
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      return new PrismaErrorHandler(error);
     }
   }
 
@@ -102,8 +103,8 @@ export default class UserRepo implements IUser {
       });
 
       return result;
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      return new PrismaErrorHandler(error);
     }
   }
 }
