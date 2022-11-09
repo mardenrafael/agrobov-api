@@ -6,6 +6,7 @@ import { ValidateLogin } from "../../middlewares/ValidateLoginMiddleware";
 import { CorsMiddleware } from "../../middlewares/CorsMiddleware";
 import { DeleteUserController } from "../../controllers/User/DeleteUserController";
 import UpdateUserController from "../../controllers/User/UpdateUserController";
+import GetAllUserController from "../../controllers/User/GetAllUserController";
 
 export default class UserRoutes {
   private readonly router: Router;
@@ -18,10 +19,16 @@ export default class UserRoutes {
 
   private config(): void {
     this.router.get(
-      "/user/",
+      "/user",
       new CorsMiddleware().setCors,
       new ValidateLogin().validate,
       new GetUserByEmailController().handle
+    );
+    this.router.get(
+      "/users",
+      new CorsMiddleware().setCors,
+      new ValidateLogin().validate,
+      new GetAllUserController().handle
     );
     this.router.get(
       "/login",
