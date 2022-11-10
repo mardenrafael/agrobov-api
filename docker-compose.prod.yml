@@ -9,11 +9,12 @@ services:
       - 14038:5432
 
   api: 
+    restart: always
     volumes:
       - app:/usr/app:ro
     ports:
       - 3030:3030
-    command:  npm run start
+    command:  pm2-runtime start node ./dist/index.js
 
 volumes:
   dbdata:
