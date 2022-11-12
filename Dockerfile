@@ -1,6 +1,5 @@
 FROM node:16-alpine as development
 
-
 WORKDIR /usr/app/
 # Copy package and package-lock
 COPY package*.json ./
@@ -13,7 +12,7 @@ RUN npm install
 # RUN npm rebuild bcrypt --build-from-source
 
 #  Copy source code
-COPY . ./
+COPY . .
 
 # # Copy prisma
 # COPY prisma prisma
@@ -27,6 +26,7 @@ RUN npm run prisma:generate
 # Build code
 RUN npm run build
 
+
 FROM node:16-alpine as production
 
 WORKDIR /usr/app/
@@ -37,7 +37,7 @@ COPY package*.json ./
 # Copy prisma schemes 
 COPY prisma prisma
 
-COPY .env ./
+COPY .env .
 
 # Install production deps
 RUN npm ci --omit=dev
