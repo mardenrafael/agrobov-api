@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc --build -v",
     "start": "pm2-runtime start node ./dist/index.js",
-    "start:dev": "nodemon --watch ./src -V --exec ts-node ./src/index.ts",
+    "start:dev": "nodemon --watch ./src -V --exec ts-node-dev ./src/index.ts",
     "prisma:push": "prisma db push",
     "prisma:generate": "prisma generate"
   },
