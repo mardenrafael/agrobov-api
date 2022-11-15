@@ -1,6 +1,4 @@
 node_modules
-docs
+.git
+.github
 .vscode
-dist
-Dockerfile
-README.md

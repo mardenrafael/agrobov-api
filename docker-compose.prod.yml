@@ -3,19 +3,11 @@ version: '3.1'
 
 services:
   db:
-    volumes:
-      - dbdata:/var/lib/postgresql/data
     ports:
       - 14038:5432
 
-  api: 
-    restart: always
-    volumes:
-      - app:/usr/app:ro
-    ports:
-      - 3030:3030
-    command:  pm2-runtime start node ./dist/index.js
-
-volumes:
-  dbdata:
-  app:
+  api:
+    build:
+      context: .
+      target: production
+    command:  npm run start

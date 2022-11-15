@@ -3,30 +3,27 @@ version: "3.1"
 services:
   db:
     image: postgres
-    container_name: agroBovDb
+    container_name: agrobovdb
     restart: always
 
     environment:
       POSTGRES_PASSWORD: r0Ot@369
       POSTGRES_DB: agrobovdb
 
-    ports:
-      - 5432:5432
-
     volumes:
       - pgdata:/var/lib/postgresql/data
 
   api:
-    build: .
+    build:
+      context: .
+      target: development
     container_name: agrobovapi
     restart: always
     expose:
       - 3030
     ports:
       - 3030:3030
-    volumes:
-      - .:/usr/app
-      - /usr/app/node_modules
+
     env_file:
       - .env
     depends_on:
@@ -35,7 +32,6 @@ services:
     links:
       - db
 
-    command: npm run start:dev
 
 volumes:
   pgdata:
