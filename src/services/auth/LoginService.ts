@@ -14,7 +14,10 @@ export class LoginService {
     this.prisma = prisma;
   }
 
-  async execute({ email, password }: LoginRequest): Promise<String | Error> {
+  async execute({
+    email,
+    password,
+  }: LoginRequest): Promise<String | Error> {
     const user = await this.prisma.user.findUnique({
       where: {
         email,
@@ -27,13 +30,16 @@ export class LoginService {
     });
 
     if (!user) {
-      return new Error("Email or password incorrect!");
+      throw new Error("Email or password incorrect!");
     }
 
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      user.password
+    );
 
     if (!isPasswordCorrect) {
-      return new Error("Email or password incorrect!");
+      throw new Error("Email or password incorrect!");
     }
 
     const token = JWT.generate(user.id);
