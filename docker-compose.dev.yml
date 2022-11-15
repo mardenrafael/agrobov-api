@@ -6,7 +6,12 @@ services:
       - 5432:5432
   
   api:
+    build:
+      context: .
+      target: development
+    
     volumes:
       - .:/usr/app:rw
       - /usr/app/node_modules
+      
     command: npm run start:dev
