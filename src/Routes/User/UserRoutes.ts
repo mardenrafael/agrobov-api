@@ -42,7 +42,7 @@ export default class UserRoutes {
     );
 
     this.router.put(
-      "/user", // Create class to Update
+      "/user",
       new CorsMiddleware().setCors,
       new ValidateLogin().validate,
       new UpdateUserController().handle
