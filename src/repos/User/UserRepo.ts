@@ -4,6 +4,20 @@ import { IUser } from "./interfaces/IUser";
 import { TUser } from "./types/TUser";
 
 export default class UserRepo implements IUser {
+  public async getAllUser(maxQtd: number): Promise<Error | TUser[]> {
+    try {
+      if (maxQtd !== 0) {
+        return await prisma.user.findMany({
+          take: maxQtd,
+        });
+      } else {
+        return await prisma.user.findMany();
+      }
+    } catch (error: any) {
+      return new PrismaErrorHandler(error);
+    }
+  }
+
   public async deleteUser({
     email,
   }: Pick<TUser, "email">): Promise<Omit<TUser, "password"> | Error> {
