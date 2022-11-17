@@ -9,7 +9,11 @@ export default class GetOxByIdService {
   }
 
   public async execute({ id }: Pick<TOx, "id">): Promise<TOx | Error> {
-    const ox = await this.repo.getOxById({ id });
-    return ox;
+    try {
+      const ox = await this.repo.getOxById({ id });
+      return ox;
+    } catch (error: any) {
+      throw error;
+    }
   }
 }

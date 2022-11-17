@@ -4,7 +4,7 @@ import prisma from "../../utils/Prisma";
 import corsConfig from "../../utils/Cors";
 
 export class LoginController {
-  async handle(req: Request, res: Response): Promise<void> {
+  public async handle(req: Request, res: Response): Promise<void> {
     try {
       res.set(corsConfig);
 

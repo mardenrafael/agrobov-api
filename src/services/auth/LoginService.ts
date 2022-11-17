@@ -14,7 +14,7 @@ export class LoginService {
     this.prisma = prisma;
   }
 
-  async execute({
+  public async execute({
     email,
     password,
   }: LoginRequest): Promise<String | Error> {

@@ -46,7 +46,7 @@ export class OxRepo implements IOx {
 
       return Ox;
     } catch (error: any) {
-      return new PrismaErrorHandler(error);
+      throw new PrismaErrorHandler(error);
     }
   }
   public async getOxById({ id }: Pick<TOx, "id">): Promise<TOx | Error> {
@@ -75,12 +75,12 @@ export class OxRepo implements IOx {
       });
 
       if (!Ox) {
-        return new Error("OX not found!");
+        throw new Error("OX not found!");
       }
 
       return Ox;
     } catch (error: any) {
-      return new PrismaErrorHandler(error);
+      throw new PrismaErrorHandler(error);
     }
   }
   public async DeleteOx({ id }: Pick<TOx, "id">): Promise<TOx | Error> {
@@ -110,7 +110,7 @@ export class OxRepo implements IOx {
 
       return ox;
     } catch (error: any) {
-      return new PrismaErrorHandler(error);
+      throw new PrismaErrorHandler(error);
     }
   }
   public async updateOx(
@@ -139,7 +139,7 @@ export class OxRepo implements IOx {
 
       return ox;
     } catch (error: any) {
-      return new PrismaErrorHandler(error);
+      throw new PrismaErrorHandler(error);
     }
   }
 }

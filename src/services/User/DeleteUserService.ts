@@ -13,10 +13,14 @@ export default class DeleteUserService {
   }: Pick<TUser, "email">): Promise<
     Omit<TUser, "id" | "password"> | Error
   > {
-    const user = await this.repo.deleteUser({
-      email,
-    });
+    try {
+      const user = await this.repo.deleteUser({
+        email,
+      });
 
-    return user;
+      return user;
+    } catch (error: any) {
+      throw error;
+    }
   }
 }

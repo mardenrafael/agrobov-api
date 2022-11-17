@@ -14,13 +14,17 @@ export default class CreateUserService {
     email,
     password,
   }: Omit<TUser, "id">): Promise<Omit<TUser, "password"> | Error> {
-    const hashPassword = await bcrypt.hash(password, 10);
-    const user = this.repo.createUser({
-      name,
-      email,
-      password: hashPassword,
-    });
+    try {
+      const hashPassword = await bcrypt.hash(password, 10);
+      const user = this.repo.createUser({
+        name,
+        email,
+        password: hashPassword,
+      });
 
-    return user;
+      return user;
+    } catch (error: any) {
+      throw error;
+    }
   }
 }

@@ -14,11 +14,15 @@ export default class UpdateUserService {
   }: Pick<TUser, "id" | "name">): Promise<
     Omit<TUser, "id" | "password"> | Error
   > {
-    const user = await this.repo.updateUser({
-      name,
-      id,
-    });
+    try {
+      const user = await this.repo.updateUser({
+        name,
+        id,
+      });
 
-    return user;
+      return user;
+    } catch (error: any) {
+      throw error;
+    }
   }
 }
