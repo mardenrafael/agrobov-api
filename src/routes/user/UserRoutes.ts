@@ -1,4 +1,4 @@
-import { LoginController } from "../../controllers/auth/LoginController";
+import { LoginController } from "../../controllers/auth";
 import { Router } from "express";
 import { ValidateLogin, CorsMiddleware } from "../../middlewares";
 import {
