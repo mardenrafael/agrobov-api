@@ -3,7 +3,7 @@ import { OxRepo } from "../../repos/ox/OxRepo";
 import { UpdateOxServiceS } from "../../services/ox";
 import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 
-export class UpdateOxController {
+export default class UpdateOxController {
   public async handle(req: Request, res: Response): Promise<void> {
     const service = new UpdateOxServiceS(new OxRepo());
     const { id, ownerId, earring, marked, genre, born_date } = req.body;
