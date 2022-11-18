@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import UserRepo from "../../repos/User/UserRepo";
+import UserRepo from "../../repos/user/UserRepo";
 import { CreateUserService } from "../../services/user";
 import { IControllers } from "../interfaces/IControllers";
 

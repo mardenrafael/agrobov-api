@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import UserRepo from "../../repos/User/UserRepo";
+import UserRepo from "../../repos/user/UserRepo";
 import { GetAllUserService } from "../../services/user";
 import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 import { IControllers } from "../interfaces/IControllers";

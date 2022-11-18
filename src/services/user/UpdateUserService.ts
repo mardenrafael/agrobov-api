@@ -1,5 +1,5 @@
-import { IUser } from "../../repos/User/interfaces/IUser";
-import { TUser } from "../../repos/User/types/TUser";
+import { IUser } from "../../repos/user/interfaces/IUser";
+import { TUser } from "../../repos/user/types/TUser";
 
 export default class UpdateUserService {
   private readonly repo: IUser;
