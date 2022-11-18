@@ -1,4 +1,4 @@
-import { LoginController } from "./../../controllers/auth/LoginController";
+import { LoginController } from "../../controllers/auth/LoginController";
 import { Router } from "express";
 import CreateUserController from "../../controllers/User/CreateUserController";
 import GetUserByEmailController from "../../controllers/User/GetUserByEmailController";
