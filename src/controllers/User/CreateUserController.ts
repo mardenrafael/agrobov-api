@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import UserRepo from "../../repos/User/UserRepo";
-import { CreateUserService } from "../../services/User";
+import { CreateUserService } from "../../services/user";
 import { IControllers } from "../interfaces/IControllers";
 
 export default class CreateUserController implements IControllers {

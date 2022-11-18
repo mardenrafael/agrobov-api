@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import UserRepo from "../../repos/User/UserRepo";
-import { DeleteUserService } from "../../services/User";
+import { DeleteUserService } from "../../services/user";
 import { IControllers } from "../interfaces/IControllers";
 
 export class DeleteUserController implements IControllers {

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import UserRepo from "../../repos/User/UserRepo";
-import { UpdateUserService } from "../../services/User";
+import { UpdateUserService } from "../../services/user";
 import { IControllers } from "../interfaces/IControllers";
 
 export default class UpdateUserController implements IControllers {

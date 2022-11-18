@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import UserRepo from "../../repos/User/UserRepo";
-import { GetUserByEmailService } from "../../services/User";
+import { GetUserByEmailService } from "../../services/user";
 import { IControllers } from "../interfaces/IControllers";
 
 export default class GetUserByEmailController implements IControllers {
