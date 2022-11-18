@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { OxRepo } from "../../repos/Ox/OxRepo";
+import { OxRepo } from "../../repos/ox/OxRepo";
 import { UpdateOxServiceS } from "../../services/ox";
 import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 import { IControllers } from "../interfaces/IControllers";

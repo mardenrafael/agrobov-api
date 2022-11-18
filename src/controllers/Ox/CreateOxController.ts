@@ -1,6 +1,6 @@
 import { CreateOxService } from "../../services/ox";
 import { Request, Response } from "express";
-import { OxRepo } from "../../repos/Ox/OxRepo";
+import { OxRepo } from "../../repos/ox/OxRepo";
 import { IControllers } from "../interfaces/IControllers";
 
 export default class CreateOxController implements IControllers {

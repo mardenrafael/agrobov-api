@@ -1,4 +1,4 @@
-import { TOx } from "../../../repos/Ox/types/TOx";
+import { TOx } from "../../../repos/ox/types/TOx";
 
 export interface OxService {
   execute(

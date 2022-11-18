@@ -1,5 +1,5 @@
-import { IOx } from "../../repos/Ox/interfaces/IOx";
-import { TOx } from "../../repos/Ox/types/TOx";
+import { IOx } from "../../repos/ox/interfaces/IOx";
+import { TOx } from "../../repos/ox/types/TOx";
 
 export default class DeleteOxService {
   private readonly repo: IOx;

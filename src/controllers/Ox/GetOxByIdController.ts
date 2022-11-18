@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { OxRepo } from "../../repos/Ox/OxRepo";
+import { OxRepo } from "../../repos/ox/OxRepo";
 import { GetOxByIdService } from "../../services/ox";
 import { IControllers } from "../interfaces/IControllers";
 
