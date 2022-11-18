@@ -1,10 +1,11 @@
 import { Router } from "express";
-import GetOxByIdController from "../../controllers/ox/GetOxByIdController";
-import CreateOxController from "../../controllers/ox/CreateOxController";
-import { ValidateLogin } from "../../middlewares/ValidateLoginMiddleware";
-import { DeleteOxController } from "../../controllers/ox/DeleteOxController";
-import { UpdateOxController } from "../../controllers/ox/UpdateOxController";
-import { CorsMiddleware } from "../../middlewares/CorsMiddleware";
+import { ValidateLogin, CorsMiddleware } from "../../middlewares";
+import {
+  DeleteOxController,
+  CreateOxController,
+  GetOxByIdController,
+  UpdateOxController,
+} from "../../controllers/ox";
 
 export default class OxRoutes {
   private readonly router: Router;
