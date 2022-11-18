@@ -14,9 +14,6 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   api:
-    build:
-      context: .
-      target: development
     container_name: agrobovapi
     restart: always
     expose:

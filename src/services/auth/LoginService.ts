@@ -1,13 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
-import JWT from "./GenerateJWTService";
+import { GenerateJWTService } from ".";
 
 type LoginRequest = {
   email: string;
   password: string;
 };
 
-export class LoginService {
+export default class LoginService {
   private readonly prisma: PrismaClient;
 
   constructor(prisma: PrismaClient) {
@@ -42,7 +42,7 @@ export class LoginService {
       throw new Error("Email or password incorrect!");
     }
 
-    const token = JWT.generate(user.id);
+    const token = GenerateJWTService.generate(user.id);
 
     return token;
   }

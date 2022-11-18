@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-export default class JWT {
+export default class GenerateJWTService {
   private static readonly JWTExpirationInSecond: number = 86400;
 
   public static generate(id: number) {
@@ -9,4 +9,3 @@ export default class JWT {
     });
   }
 }
-

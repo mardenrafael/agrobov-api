@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
-export class ValidateLogin {
+export default class ValidateLoginMiddleware {
   public async validate(
     req: Request,
     res: Response,

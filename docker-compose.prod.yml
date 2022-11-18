@@ -10,4 +10,4 @@ services:
     build:
       context: .
       target: production
-    command:  npm run start
+    command:  node ./dist/index.js
