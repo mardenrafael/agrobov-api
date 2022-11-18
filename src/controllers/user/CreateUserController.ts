@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import UserRepo from "../../repos/user/UserRepo";
-import { CreateUserService } from "../../services/user";
+import { CreateUserService } from "../../services";
 
 export default class CreateUserController {
   public async handle(req: Request, res: Response): Promise<void> {

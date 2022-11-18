@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import UserRepo from "../../repos/user/UserRepo";
-import { GetAllUserService } from "../../services/user";
+import { GetAllUserService } from "../../services";
 import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 
 export default class GetAllUserController {
