@@ -1,13 +1,13 @@
-import { LoginController } from "../../controllers/auth";
 import { Router } from "express";
-import { ValidateLogin, CorsMiddleware } from "../../middlewares";
 import {
+  LoginController,
   DeleteUserController,
   UpdateUserController,
   GetAllUserController,
   CreateUserController,
   GetUserByEmailController,
-} from "../../controllers/user/";
+} from "../../controllers";
+import { ValidateLogin, CorsMiddleware } from "../../middlewares";
 
 export default class UserRoutes {
   private readonly router: Router;
