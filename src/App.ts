@@ -1,6 +1,6 @@
 import { Express, json } from "express";
 import cors from "cors";
-import { Auth } from "./routes/Auth/AuthRoutes";
+import { Auth } from "./routes/auth/AuthRoutes";
 import OxRoutes from "./routes/ox/OxRoutes";
 import UserRoutes from "./routes/user/UserRoutes";
 import limiter from "./utils/Limiter";
