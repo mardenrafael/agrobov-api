@@ -3,7 +3,7 @@ import UserRepo from "../../repos/user/UserRepo";
 import { DeleteUserService } from "../../services/user";
 import { IControllers } from "../interfaces/IControllers";
 
-export class DeleteUserController implements IControllers {
+export default class DeleteUserController implements IControllers {
   public async handle(req: Request, res: Response): Promise<void> {
     try {
       const service = new DeleteUserService(new UserRepo());
