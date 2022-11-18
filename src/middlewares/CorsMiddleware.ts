@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import corsConfig from "../utils/Cors";
 
-export class CorsMiddleware {
+export default class CorsMiddleware {
   public async setCors(
     _req: Request,
     res: Response,
@@ -11,4 +11,3 @@ export class CorsMiddleware {
     next();
   }
 }
-
