@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { LoginController } from "../../controllers";
+import { CorsMiddleware } from "../../middlewares";
 
 export class Auth {
   private readonly route: Router;
@@ -11,7 +12,11 @@ export class Auth {
   }
 
   private config() {
-    this.route.post("/login", new LoginController().handle);
+    this.route.post(
+      "/login",
+      new CorsMiddleware().setCors,
+      new LoginController().handle
+    );
   }
 
   public export(): Router {
