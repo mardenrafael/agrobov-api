@@ -15,7 +15,6 @@ export class LoginController {
         password,
       });
 
-      console.log("result", result);
       res.status(200).json({
         token: result,
       });
