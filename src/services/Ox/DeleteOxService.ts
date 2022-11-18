@@ -9,8 +9,11 @@ export default class DeleteOxService {
   }
 
   public async execute({ id }: Pick<TOx, "id">): Promise<TOx | Error> {
-    const ox = await this.repo.DeleteOx({ id });
-
-    return ox;
+    try {
+      const ox = await this.repo.DeleteOx({ id });
+      return ox;
+    } catch (error: any) {
+      throw error;
+    }
   }
 }

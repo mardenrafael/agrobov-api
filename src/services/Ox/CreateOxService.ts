@@ -15,14 +15,18 @@ export default class CreateOxService {
     genre,
     marked,
   }: Omit<TOx, "id" | "active">): Promise<Error | TOx> {
-    const ox = await this.repo.createOx({
-      earring,
-      born_date,
-      genre,
-      marked,
-      ownerId,
-    });
+    try {
+      const ox = await this.repo.createOx({
+        earring,
+        born_date,
+        genre,
+        marked,
+        ownerId,
+      });
 
-    return ox;
+      return ox;
+    } catch (error: any) {
+      return error;
+    }
   }
 }

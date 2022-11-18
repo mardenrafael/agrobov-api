@@ -10,13 +10,15 @@ export default class GetUserByEmailService {
 
   public async execute({
     email,
-  }: Pick<TUser, "email">): Promise<
-    Error | Omit<TUser, "password">
-  > {
-    const user = await this.repo.getUserByEmail({
-      email,
-    });
+  }: Pick<TUser, "email">): Promise<Error | Omit<TUser, "password">> {
+    try {
+      const user = await this.repo.getUserByEmail({
+        email,
+      });
 
-    return user;
+      return user;
+    } catch (error: any) {
+      throw error;
+    }
   }
 }

@@ -14,7 +14,7 @@ export default class UserRepo implements IUser {
         return await prisma.user.findMany();
       }
     } catch (error: any) {
-      return new PrismaErrorHandler(error);
+      throw new PrismaErrorHandler(error);
     }
   }
 
@@ -65,7 +65,7 @@ export default class UserRepo implements IUser {
 
       return user;
     } catch (error: any) {
-      return new PrismaErrorHandler(error);
+      throw new PrismaErrorHandler(error);
     }
   }
 
@@ -91,7 +91,7 @@ export default class UserRepo implements IUser {
       }
       return user;
     } catch (error: any) {
-      return new PrismaErrorHandler(error);
+      throw new PrismaErrorHandler(error);
     }
   }
 
@@ -118,7 +118,7 @@ export default class UserRepo implements IUser {
 
       return result;
     } catch (error: any) {
-      return new PrismaErrorHandler(error);
+      throw new PrismaErrorHandler(error);
     }
   }
 }
