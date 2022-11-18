@@ -5,7 +5,7 @@ import {
   CreateOxController,
   GetOxByIdController,
   UpdateOxController,
-} from "../../controllers/ox";
+} from "../../controllers";
 
 export default class OxRoutes {
   private readonly router: Router;
