@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { LoginService } from "../../services/auth/LoginService";
+import { LoginService } from "../../services/auth";
 import prisma from "../../utils/Prisma";
 import corsConfig from "../../utils/Cors";
 
-export class LoginController {
+export default class LoginController {
   public async handle(req: Request, res: Response): Promise<void> {
     try {
       res.set(corsConfig);
