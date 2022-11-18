@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { OxRepo } from "../../repos/ox/OxRepo";
-import { UpdateOxServiceS } from "../../services/ox";
+import { UpdateOxServiceS } from "../../services";
 import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
 
 export default class UpdateOxController {

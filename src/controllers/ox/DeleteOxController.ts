@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { OxRepo } from "../../repos/ox/OxRepo";
-import { DeleteOxService } from "../../services/ox";
+import { DeleteOxService } from "../../services";
 
 export default class DeleteOxController {
   public async handle(req: Request, res: Response): Promise<void> {

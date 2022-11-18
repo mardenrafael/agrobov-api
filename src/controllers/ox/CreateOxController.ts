@@ -1,4 +1,4 @@
-import { CreateOxService } from "../../services/ox";
+import { CreateOxService } from "../../services";
 import { Request, Response } from "express";
 import { OxRepo } from "../../repos/ox/OxRepo";
 

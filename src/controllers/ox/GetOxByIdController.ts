@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { OxRepo } from "../../repos/ox/OxRepo";
-import { GetOxByIdService } from "../../services/ox";
+import { GetOxByIdService } from "../../services";
 
 export default class GetOxByIdController {
   public async handle(req: Request, res: Response): Promise<void> {
