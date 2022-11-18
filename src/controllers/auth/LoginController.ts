@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { LoginService } from "../../services/auth";
+import { LoginService } from "../../services";
 import prisma from "../../utils/Prisma";
 import corsConfig from "../../utils/Cors";
 
