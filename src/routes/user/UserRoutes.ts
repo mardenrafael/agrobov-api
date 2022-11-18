@@ -1,12 +1,13 @@
 import { LoginController } from "../../controllers/auth/LoginController";
 import { Router } from "express";
-import CreateUserController from "../../controllers/user/CreateUserController";
-import GetUserByEmailController from "../../controllers/user/GetUserByEmailController";
-import { ValidateLogin } from "../../middlewares/ValidateLoginMiddleware";
-import { CorsMiddleware } from "../../middlewares/CorsMiddleware";
-import { DeleteUserController } from "../../controllers/user/DeleteUserController";
-import UpdateUserController from "../../controllers/user/UpdateUserController";
-import GetAllUserController from "../../controllers/user/GetAllUserController";
+import { ValidateLogin, CorsMiddleware } from "../../middlewares";
+import {
+  DeleteUserController,
+  UpdateUserController,
+  GetAllUserController,
+  CreateUserController,
+  GetUserByEmailController,
+} from "../../controllers/user/";
 
 export default class UserRoutes {
   private readonly router: Router;
