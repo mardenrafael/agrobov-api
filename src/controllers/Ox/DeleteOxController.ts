@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { OxRepo } from "../../repos/Ox/OxRepo";
-import { DeleteOxService } from "../../services/Ox";
+import { DeleteOxService } from "../../services/ox";
 import { IControllers } from "../interfaces/IControllers";
 
 export class DeleteOxController implements IControllers {

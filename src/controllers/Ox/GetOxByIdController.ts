@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { OxRepo } from "../../repos/Ox/OxRepo";
-import { GetOxByIdService } from "../../services/Ox";
+import { GetOxByIdService } from "../../services/ox";
 import { IControllers } from "../interfaces/IControllers";
 
 export default class GetOxByIdController implements IControllers {
