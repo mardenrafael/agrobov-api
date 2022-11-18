@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
 import { OxRepo } from "../../repos/ox/OxRepo";
 import { GetOxByIdService } from "../../services/ox";
-import { IControllers } from "../interfaces/IControllers";
 
-export default class GetOxByIdController implements IControllers {
+export default class GetOxByIdController {
   public async handle(req: Request, res: Response): Promise<void> {
     try {
       const id = Number(req.params.id);
