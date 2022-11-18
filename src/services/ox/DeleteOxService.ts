@@ -10,7 +10,7 @@ export default class DeleteOxService {
 
   public async execute({ id }: Pick<TOx, "id">): Promise<TOx | Error> {
     try {
-      const ox = await this.repo.DeleteOx({ id });
+      const ox = await this.repo.deleteOx({ id });
       return ox;
     } catch (error: any) {
       throw error;

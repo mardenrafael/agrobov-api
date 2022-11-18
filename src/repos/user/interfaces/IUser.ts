@@ -2,7 +2,6 @@ import { TUser } from "../types/TUser";
 
 export interface IUser {
   getAllUser(maxQtd: number): Promise<TUser[] | Error>;
-
   getUserByEmail({
     email,
   }: Pick<TUser, "email">): Promise<Omit<TUser, "password"> | Error>;

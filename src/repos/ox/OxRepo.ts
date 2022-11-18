@@ -83,7 +83,7 @@ export class OxRepo implements IOx {
       throw new PrismaErrorHandler(error);
     }
   }
-  public async DeleteOx({ id }: Pick<TOx, "id">): Promise<TOx | Error> {
+  public async deleteOx({ id }: Pick<TOx, "id">): Promise<TOx | Error> {
     try {
       const ox = await prisma.ox.delete({
         where: {
