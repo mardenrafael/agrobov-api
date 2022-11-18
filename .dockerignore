@@ -1,6 +1,7 @@
 node_modules
-docs
+.git
+.github
 .vscode
-dist
 Dockerfile
+docker-compose*.yml
 README.md

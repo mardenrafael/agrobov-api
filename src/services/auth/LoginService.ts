@@ -1,20 +1,23 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
-import JWT from "./GenerateJWTService";
+import { GenerateJWTService } from ".";
 
 type LoginRequest = {
   email: string;
   password: string;
 };
 
-export class LoginService {
+export default class LoginService {
   private readonly prisma: PrismaClient;
 
   constructor(prisma: PrismaClient) {
     this.prisma = prisma;
   }
 
-  async execute({ email, password }: LoginRequest): Promise<String | Error> {
+  public async execute({
+    email,
+    password,
+  }: LoginRequest): Promise<String | Error> {
     const user = await this.prisma.user.findUnique({
       where: {
         email,
@@ -27,16 +30,19 @@ export class LoginService {
     });
 
     if (!user) {
-      return new Error("Email or password incorrect!");
+      throw new Error("Email or password incorrect!");
     }
 
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      user.password
+    );
 
     if (!isPasswordCorrect) {
-      return new Error("Email or password incorrect!");
+      throw new Error("Email or password incorrect!");
     }
 
-    const token = JWT.generate(user.id);
+    const token = GenerateJWTService.generate(user.id);
 
     return token;
   }

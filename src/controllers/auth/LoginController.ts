@@ -1,30 +1,24 @@
 import { Request, Response } from "express";
-import { LoginService } from "../../services/auth/LoginService";
+import { LoginService } from "../../services";
 import prisma from "../../utils/Prisma";
-import corsConfig from "../../utils/Cors";
-export class LoginController {
-  async handle(req: Request, res: Response): Promise<void> {
-    
-    res.set(corsConfig);
 
-    const { email, password } = req.body;
-    const service = new LoginService(prisma);
-    const result = await service.execute({
-      email,
-      password,
-    });
-
-    if (result instanceof Error) {
-      res.status(401).json({
-        error: result.message,
+export default class LoginController {
+  public async handle(req: Request, res: Response): Promise<void> {
+    try {
+      const { email, password } = req.body;
+      const service = new LoginService(prisma);
+      const result = await service.execute({
+        email,
+        password,
       });
 
-      return;
+      res.status(200).json({
+        token: result,
+      });
+    } catch (error: any) {
+      res.status(401).json({
+        error: error.message,
+      });
     }
-
-    res.status(200).json({
-      token: result,
-    });
   }
 }
-

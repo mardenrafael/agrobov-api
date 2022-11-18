@@ -1,0 +1,13 @@
+version: '3.1'
+
+
+services:
+  db:
+    ports:
+      - 14038:5432
+
+  api:
+    build:
+      context: .
+      target: production
+    command:  node ./dist/index.js
