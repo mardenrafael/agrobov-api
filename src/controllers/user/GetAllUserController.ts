@@ -2,9 +2,8 @@ import { Request, Response } from "express";
 import UserRepo from "../../repos/user/UserRepo";
 import { GetAllUserService } from "../../services/user";
 import PrismaErrorHandler from "../../utils/PrismaErrorHandler";
-import { IControllers } from "../interfaces/IControllers";
 
-export default class GetAllUserController implements IControllers {
+export default class GetAllUserController {
   public async handle(req: Request, res: Response): Promise<void> {
     const { quantity } = req.body;
     const service = new GetAllUserService(new UserRepo());
