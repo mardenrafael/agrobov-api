@@ -46,7 +46,4 @@ RUN npm ci --omit=dev
 COPY --from=development /usr/app/dist ./dist
 
 
-# Exposing port 3030
-EXPOSE 3030
-
 CMD ["node", "./dist/index.js" ]

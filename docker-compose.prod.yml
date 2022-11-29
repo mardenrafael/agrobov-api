@@ -11,3 +11,7 @@ services:
       context: .
       target: production
     command:  node ./dist/index.js
+    expose:
+      - 80
+    ports:
+      - 80:3030
