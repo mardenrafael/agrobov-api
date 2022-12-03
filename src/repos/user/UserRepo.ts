@@ -4,6 +4,32 @@ import { IUser } from "./interfaces/IUser";
 import { TUser } from "./types/TUser";
 
 export default class UserRepo implements IUser {
+  public async changeUserPassword({
+    id,
+    password,
+  }: Pick<TUser, "id" | "password">): Promise<
+    Error | Omit<TUser, "password">
+  > {
+    try {
+      return await prisma.user.update({
+        where: {
+          id,
+        },
+        data: {
+          password,
+        },
+        select: {
+          brand: true,
+          email: true,
+          name: true,
+          id: true,
+          Ox: true,
+        },
+      });
+    } catch (error: any) {
+      throw new PrismaErrorHandler(error);
+    }
+  }
   public async getAllUser(maxQtd: number): Promise<Error | TUser[]> {
     try {
       if (maxQtd !== 0) {

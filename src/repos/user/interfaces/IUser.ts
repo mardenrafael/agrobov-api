@@ -19,4 +19,10 @@ export interface IUser {
   deleteUser({
     email,
   }: Pick<TUser, "email">): Promise<Error | Omit<TUser, "password">>;
+  changeUserPassword({
+    id,
+    password,
+  }: Pick<TUser, "id" | "password">): Promise<
+    Error | Omit<TUser, "password">
+  >;
 }

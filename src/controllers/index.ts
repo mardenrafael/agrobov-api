@@ -4,6 +4,7 @@ import {
   GetAllUserController,
   GetUserByEmailController,
   UpdateUserController,
+  UpdateUserPasswordController,
 } from "./user";
 import {
   CreateOxController,
@@ -14,6 +15,7 @@ import {
 import { LoginController } from "./auth";
 
 export {
+  UpdateUserPasswordController,
   CreateUserController,
   DeleteUserController,
   GetAllUserController,

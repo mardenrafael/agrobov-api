@@ -6,6 +6,7 @@ import {
   GetAllUserController,
   CreateUserController,
   GetUserByEmailController,
+  UpdateUserPasswordController,
 } from "../../controllers";
 import { ValidateLogin, CorsMiddleware } from "../../middlewares";
 
@@ -40,6 +41,12 @@ export default class UserRoutes {
       "/user",
       new CorsMiddleware().setCors,
       new CreateUserController().handle
+    );
+    this.router.put(
+      "/user/password",
+      new CorsMiddleware().setCors,
+      new ValidateLogin().validate,
+      new UpdateUserPasswordController().handle
     );
 
     this.router.put(
