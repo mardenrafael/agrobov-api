@@ -11,7 +11,7 @@ export default class UserRepo implements IUser {
     Error | Omit<TUser, "password">
   > {
     try {
-      const user = await prisma.user.update({
+      return await prisma.user.update({
         where: {
           id,
         },
@@ -26,8 +26,6 @@ export default class UserRepo implements IUser {
           Ox: true,
         },
       });
-
-      return user;
     } catch (error: any) {
       throw new PrismaErrorHandler(error);
     }
