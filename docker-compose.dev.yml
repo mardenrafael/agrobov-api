@@ -10,6 +10,9 @@ services:
       context: .
       target: development
     
+    ports:
+      - 3030:3030
+    
     volumes:
       - .:/usr/app:rw
       - /usr/app/node_modules

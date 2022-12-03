@@ -1,4 +1,5 @@
 import { IUser } from "../../repos/user/interfaces/IUser";
+import bcrypt from "bcrypt";
 import { TUser } from "../../repos/user/types/TUser";
 
 export default class UpdateUserPasswordService {
@@ -15,7 +16,11 @@ export default class UpdateUserPasswordService {
     Omit<TUser, "password"> | Error
   > {
     try {
-      return await this.repo.changeUserPassword({ id, password });
+      const hashPassword = await bcrypt.hash(password, 10);
+      return await this.repo.changeUserPassword({
+        id,
+        password: hashPassword,
+      });
     } catch (error: any) {
       throw error;
     }
